@@ -1,4 +1,5 @@
 import 'package:ecomerce/app/modules/detail/detail_bloc.dart';
+
 import 'package:ecomerce/app/app_bloc.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
