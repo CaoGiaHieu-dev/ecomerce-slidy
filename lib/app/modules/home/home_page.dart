@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'home_controller.dart';
+import '../home/widgets/category/category_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -33,20 +34,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       (
         children: <Widget>
         [
-          Center
-          (
-            child :TextField
-            (
-              onChanged: (value)
-              {
-                controller.value = value;
-              },
-              decoration: InputDecoration
-              (
-                labelText: "Type data"
-              ),
-            )
-          )
+          CategoryPage()
         ],
       ),
     );

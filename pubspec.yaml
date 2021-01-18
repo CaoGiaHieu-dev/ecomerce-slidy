@@ -35,6 +35,13 @@ dependencies:
   flutter_mobx: ^1.1.0+2
   mobx: ^1.2.1+4
   flutter_modular: ^2.0.1
+  hexcolor: ^1.0.6
+  google_maps_flutter: ^1.0.6
+  geolocator: ^6.0.0+4
+  google_maps_place_picker: ^1.0.0
+  cached_network_image: ^2.3.3
+  flutter_swiper: ^1.1.6
+  shared_preferences: ^0.5.12+4
   flutter:
     sdk: flutter
 
@@ -48,13 +55,7 @@ dev_dependencies:
   injectable: ^1.0.7
   mobx_codegen: ^1.1.2
   build_runner: ^1.10.13
-  hexcolor: ^1.0.6
-  google_maps_flutter: ^1.0.6
-  geolocator: ^6.0.0+4
-  google_maps_place_picker: ^1.0.0
-  cached_network_image: ^2.3.3
-  flutter_swiper: ^1.1.6
-  shared_preferences: ^0.5.12+4
+  
   flutter_test:
     sdk: flutter
 
