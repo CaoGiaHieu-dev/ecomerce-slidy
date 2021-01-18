@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'detail_controller.dart';
 
 class DetailPage extends StatefulWidget {
   final String title;
-  const DetailPage({Key key, this.title = "Detail"}) : super(key: key);
+  final String name;
+  const DetailPage
+  (
+    {
+      Key key, 
+      this.title = "Detail",
+      this.name,
+    }
+  ) : super(key: key);
 
   @override
   _DetailPageState createState() => _DetailPageState();
 }
 
-class _DetailPageState extends State<DetailPage> {
+class _DetailPageState extends ModularState<DetailPage, DetailController> {
+  //use 'controller' variable to access controller
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +28,16 @@ class _DetailPageState extends State<DetailPage> {
         title: Text(widget.title),
       ),
       body: Column(
-        children: <Widget>[],
+        children: <Widget>
+        [
+          Center
+          (
+            child: Text
+            (
+              "Name : ${widget.name}"
+            ),
+          )
+        ],
       ),
     );
   }

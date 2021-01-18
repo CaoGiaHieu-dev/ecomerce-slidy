@@ -1,15 +1,28 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter/material.dart';
+import 'package:ecomerce/app/modules/detail/detail_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-class DetailModule extends ModuleWidget {
+import 'detail_page.dart';
+
+class DetailModule extends ChildModule {
   @override
-  List<Bloc> get blocs => [];
+  List<Bind> get binds => 
+  [
+    Bind( (i)=> DetailController())
+  ];
 
   @override
-  List<Dependency> get dependencies => [];
-
-  @override
-  Widget get view => Container();
+  List<ModularRouter> get routers => 
+  [
+    ModularRouter(Modular.initialRoute, child: (_, args) => DetailPage()),
+    ModularRouter
+    (
+      "/:name", 
+      child: (_, args) => DetailPage
+      ( 
+        name:  args.params['name'],
+      )
+    ),
+  ];
 
   static Inject get to => Inject<DetailModule>.of();
 }

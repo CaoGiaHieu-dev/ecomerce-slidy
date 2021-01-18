@@ -1,19 +1,26 @@
-import 'package:ecomerce/app/modules/home/home_bloc.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter/material.dart';
-import 'package:ecomerce/app/modules/home/home_page.dart';
+import 'package:ecomerce/app/modules/detail/detail_controller.dart';
+import 'package:ecomerce/app/modules/detail/detail_module.dart';
 
-class HomeModule extends ModuleWidget {
+import 'home_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import 'home_page.dart';
+
+class HomeModule extends ChildModule {
   @override
-  List<Bloc> get blocs => [
-        Bloc((i) => HomeBloc()),
+  List<Bind> get binds => [
+        Bind( (i) => HomeController())
       ];
 
   @override
-  List<Dependency> get dependencies => [];
-
-  @override
-  Widget get view => HomePage();
+  List<ModularRouter> get routers => [
+        ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
+        // ModularRouter
+        // (
+        //   "/detail",
+        //   module: DetailModule(),
+        // )
+      ];
 
   static Inject get to => Inject<HomeModule>.of();
 }
