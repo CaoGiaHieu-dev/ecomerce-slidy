@@ -1,7 +1,8 @@
+import 'package:ecomerce/app/modules/home/widgets/category/category_page.dart';
+import 'package:ecomerce/app/modules/home/widgets/header/header_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'home_controller.dart';
-import '../home/widgets/category/category_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -26,17 +27,75 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         },
         child: Icon(Icons.pages),
       ),
-      appBar: AppBar
-      (
-        title: Text(widget.title),
-      ),
-      body: Column
+      // appBar: AppBar
+      // (
+      //   title: Text(widget.title),
+      //   backgroundColor: kMainColor,
+      // ),
+      body: Stack
       (
         children: <Widget>
         [
-          CategoryPage()
+          HeaderPage(),
+          SafeArea
+          (
+            child: Column
+            (
+              children: <Widget>
+              [
+                Padding
+                (
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row
+                  (
+                    children: <Widget>
+                    [
+                      MaterialButton
+                      (
+                        padding: const EdgeInsets.all(8.0),
+                        shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0)),
+                        child: Icon(Icons.arrow_back_ios),
+                        color: Colors.white,
+                        textColor: Colors.black,
+                        minWidth: 0,
+                        height: 40,
+                        onPressed: () => null,
+                      ),
+                    ]
+                  ),
+                ),
+                SizedBox
+                (
+                  height: MediaQuery.of(context).size.height * 0.25,
+                ),
+                Expanded
+                (
+                  child: Container
+                  (
+                    height: MediaQuery.of(context).size.height +200,
+                    decoration: BoxDecoration
+                    (
+                      borderRadius: BorderRadius.circular(20.0),
+                      color: Colors.white
+                    ),
+                    child: SingleChildScrollView
+                    (
+                      child: Column
+                      (
+                        children: <Widget>
+                        [
+                          CategoryPage()
+                        ],
+                      ),
+                    ),
+                  )
+                )
+              ]
+            )
+          )
         ],
-      ),
+      )
     );
   }
 }

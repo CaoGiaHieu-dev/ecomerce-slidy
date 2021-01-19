@@ -2,10 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dio/dio.dart';
 
+import 'package:ecomerce/app/repositories/category_repository.dart';
 
 class MockClient extends Mock implements Dio {}
 
 void main() {
+  CategoryRepository repository;
   // MockClient client;
 
   setUp(() {

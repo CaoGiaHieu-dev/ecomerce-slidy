@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:ecomerce/app/modules/home/widgets/category_repository.dart';
+import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_controller.dart';
+import 'package:ecomerce/app/repositories/category_repository.dart';
+import 'package:ecomerce/app/modules/home/widgets/header/header_controller.dart';
 
 import 'widgets/category/category_controller.dart';
 
@@ -11,7 +13,12 @@ class HomeModule extends ChildModule {
   @override
   List<Bind> get binds => 
   [
+    
+    Bind( (i)=> HeaderController() ),
     Bind((i) => CategoryController(i.get<CategoryRepository>())),
+    Bind( (i) => HotItemsController()),
+
+    //repository
     Bind( (i) => CategoryRepository(i.get<Dio>())), 
     Bind( (i) => Dio(BaseOptions(baseUrl: "https://5f96864411ab98001603ac4b.mockapi.io")))
     // Bind((i) => HomeController())

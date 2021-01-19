@@ -18,51 +18,103 @@ class _CategoryPageState extends ModularState<CategoryPage, CategoryController> 
   @override
   Widget build(BuildContext context) 
   {
-    return Container
+    return Column
     (
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width ,
-      height: MediaQuery.of(context).size.height * 0.25,
-      
-      child: Observer
-      (
-        builder: (context)
-        {
-          if(controller.categoryList.error != null)
-          {
-            return Text(("${controller.categoryList.error}"));
-          }
-          if(controller.categoryList.value == null)
-          {
-            return Center
-            (
-              child: CircularProgressIndicator(),
-            );
-          }
-          
-          var data = controller.categoryList.value;
-
-          return Swiper
+      children: <Widget>
+      [
+        SizedBox
+        (
+          height: 15,
+        ),
+        Container
+        (
+          margin: EdgeInsets.only
           (
-            pagination: new SwiperPagination(),
-            autoplay: true,
-            autoplayDelay: 1000 * 10  ,
-            itemCount: data.length,
-
-            itemBuilder: (context, index) 
+            left: 20,
+          ),
+          alignment: Alignment.centerLeft,
+          child: Text
+          (
+            "Categories",
+            style: TextStyle
+            (
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 25.0,
+            ),
+            maxLines: 1,
+          ),
+        ),
+        SizedBox
+        (
+          height: 20,
+        ),
+        Container
+        (
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width ,
+          height: MediaQuery.of(context).size.height * 0.25,
+          
+          child: Observer
+          (
+            builder: (context)
             {
-              return CachedNetworkImage
+              if(controller.categoryList.error != null)
+              {
+                return Text(("${controller.categoryList.error}"));
+              }
+              if(controller.categoryList.value == null)
+              {
+                return Center
+                (
+                  child: CircularProgressIndicator(),
+                );
+              }
+              
+              var data = controller.categoryList.value;
+
+              return Swiper
               (
-                imageUrl: data[index].image,
-                alignment: Alignment.center,
-                placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
-                errorWidget: (context, url, error) => new Icon(Icons.error),
+                pagination: new SwiperPagination(),
+                autoplay: true,
+                autoplayDelay: 1000 * 10  ,
+                itemCount: data.length,
+
+                itemBuilder: (context, index) 
+                {
+                  return Container
+                  (
+                    decoration: BoxDecoration
+                    (
+                      shape: BoxShape.rectangle,
+                      boxShadow: 
+                      [
+                        BoxShadow
+                        (
+                          color: Colors.indigo,
+                          blurRadius: 10.0
+                        )
+                      ]
+                    ),
+                    child: Card
+                    (
+                      shadowColor: Colors.grey,
+                      child: CachedNetworkImage
+                      (
+                        imageUrl: data[index].image,
+                        alignment: Alignment.center,
+                        placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
+                        errorWidget: (context, url, error) => new Icon(Icons.error),
+                      ),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
-        
-      ),
+            
+          ),
+        ),
+      ],
     );
   }
 }

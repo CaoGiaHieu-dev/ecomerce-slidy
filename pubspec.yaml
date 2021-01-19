@@ -41,7 +41,9 @@ dependencies:
   google_maps_place_picker: ^1.0.0
   cached_network_image: ^2.3.3
   flutter_swiper: ^1.1.6
+  # svg_cached_network_image: ^1.0.0+1
   shared_preferences: ^0.5.12+4
+  flutter_svg: ^0.19.2+1
   flutter:
     sdk: flutter
 
