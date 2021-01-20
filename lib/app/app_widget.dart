@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -17,7 +18,7 @@ class AppWidget extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Shjn Milkys Restaurant',
       theme: ThemeData(
-        scaffoldBackgroundColor: Colors.grey.shade300,
+        scaffoldBackgroundColor: HexColor("#50b6bb"),
         primarySwatch: Colors.red,
         accentColor: Colors.indigo,
       ),

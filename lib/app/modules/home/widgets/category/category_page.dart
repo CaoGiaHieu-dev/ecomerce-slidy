@@ -99,12 +99,39 @@ class _CategoryPageState extends ModularState<CategoryPage, CategoryController> 
                     child: Card
                     (
                       shadowColor: Colors.grey,
-                      child: CachedNetworkImage
+                      child: Stack
                       (
-                        imageUrl: data[index].image,
-                        alignment: Alignment.center,
-                        placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
-                        errorWidget: (context, url, error) => new Icon(Icons.error),
+                        children: <Widget>
+                        [
+                          CachedNetworkImage
+                          (
+                            height: double.infinity,
+                            width: double.infinity,
+                            imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg",
+                            alignment: Alignment.center,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
+                            errorWidget: (context, url, error) => new Icon(Icons.error),
+                          ),
+                          Container
+                          (
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration
+                            (
+                              shape: BoxShape.rectangle,
+                            ),
+                            // child: Text
+                            // (
+                            //   "${data[index].name}",
+                            //   style: TextStyle
+                            //   (
+                            //     fontSize: 15,
+                            //     color: Colors.black,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
+                          )
+                        ],
                       ),
                     ),
                   );
