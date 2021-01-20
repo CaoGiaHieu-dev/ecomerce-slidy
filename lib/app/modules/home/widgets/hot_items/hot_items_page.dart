@@ -1,8 +1,8 @@
+import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'hot_items_controller.dart';
 
 class HotItemsPage extends StatefulWidget {
@@ -75,109 +75,117 @@ class _HotItemsPageState
               itemCount: data.length,
               itemBuilder: (context, index) 
               {
-                return Container
+                return GestureDetector
                 (
-                  height: 200.0,
-                  padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                  margin: EdgeInsets.only(bottom: 20.0),
-                
-                  child: Row
+                  onTap: ()
+                  {
+                    Modular.to.pushNamed
+                    (
+                      "/detail",
+                      arguments: data[index]
+                    );
+                  },
+                  child: Container
                   (
-                    children: <Widget>
-                    [
-                      Expanded
-                      (
-                        child: Container
+                    height: 200.0,
+                    padding: EdgeInsets.only(left: 10.0, right: 10.0),
+                    margin: EdgeInsets.only(bottom: 20.0,top : 20.0),
+                  
+                    child: Row
+                    (
+                      children: <Widget>
+                      [
+                        Expanded
                         (
-                          decoration: BoxDecoration
+                          child: Container
                           (
-                            image: DecorationImage
+                            decoration: BoxDecoration
                             (
-                              image: NetworkImage(data[index].image), 
-                              fit: BoxFit.cover
-                            ),
-                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                            boxShadow: 
-                            [
-                              BoxShadow
+                              image: DecorationImage
                               (
-                                color: Colors.grey,
-                                offset: Offset(5.0, 5.0),
-                                blurRadius: 10.0
-                              )
-                            ]
-                          ),
-                        )
-                      ),
-                      Expanded
-                      (
-                        child: Container
-                        (
-                          margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                          padding: EdgeInsets.all(20.0),
-                          decoration: BoxDecoration
-                          (
-                            borderRadius: BorderRadius.only
-                            (
-                              bottomRight: Radius.circular(10.0),
-                              topRight: Radius.circular(10.0)
-                            ),
-                            color: Colors.white,
-                            boxShadow: 
-                            [
-                              BoxShadow
-                              (
-                                color: Colors.grey,
-                                offset: Offset(5.0, 5.0),
-                                blurRadius: 10.0
-                              )
-                            ]
-                          ),
-                          child: Column
-                          (
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>
-                            [
-                              Text
-                              (
-                                data[index].title,
-                                style: TextStyle
+                                image: NetworkImage(data[index].image), 
+                                fit: BoxFit.cover
+                              ),
+                              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                              boxShadow: 
+                              [
+                                BoxShadow
                                 (
-                                  fontSize: 15.0, 
-                                  fontWeight: FontWeight.w700
-                                ),
-                              ),
-                              SizedBox
+                                  color: Colors.grey,
+                                  offset: Offset(5.0, 5.0),
+                                  blurRadius: 10.0
+                                )
+                              ]
+                            ),
+                          )
+                        ),
+                        Expanded
+                        (
+                          child: Container
+                          (
+                            margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                            padding: EdgeInsets.all(20.0),
+                            decoration: BoxDecoration
+                            (
+                              borderRadius: BorderRadius.only
                               (
-                                height: 10.0,
+                                bottomRight: Radius.circular(10.0),
+                                topRight: Radius.circular(10.0)
                               ),
-                              Text
-                              (
-                                "\$${data[index].price.toString()}",
+                              color: Colors.white,
+                              boxShadow: 
+                              [
+                                BoxShadow
+                                (
+                                  color: Colors.grey,
+                                  offset: Offset(5.0, 5.0),
+                                  blurRadius: 10.0
+                                )
+                              ]
+                            ),
+                            child: Column
+                            (
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>
+                              [
+                                Text
+                                (
+                                  data[index].title,
                                   style: TextStyle
                                   (
-                                    color: Colors.red,
-                                    fontSize: 30.0,
-                                  )
-                              ),
-                              // SizedBox
-                              // (
-                              //   height: 20.0,
-                              // ),
-                              // Text
-                              // (
-                              //   data[index].description,
-                              //   style: TextStyle
-                              //   (
-                              //     fontSize: 18.0, 
-                              //     color: Colors.grey, height: 1.5
-                              //   )
-                              // )
-                            ],
-                          ),
+                                    fontSize: 15.0, 
+                                    fontWeight: FontWeight.w700
+                                  ),
+                                ),
+                                Spacer(),
+                                Text
+                                (
+                                  "\$${data[index].price.toString()}",
+                                    style: TextStyle
+                                    (
+                                      color: Colors.red,
+                                      fontSize: 30.0,
+                                    )
+                                ),
+                                // SizedBox
+                                // (
+                                //   height: 20.0,
+                                // ),
+                                // Text
+                                // (
+                                //   data[index].description,
+                                //   style: TextStyle
+                                //   (
+                                //     fontSize: 18.0, 
+                                //     color: Colors.grey, height: 1.5
+                                //   )
+                                // )
+                              ],
+                            ),
+                          )
                         )
-                      )
-                    ]
+                      ]
+                    ),
                   ),
                 );
               },
@@ -188,4 +196,3 @@ class _HotItemsPageState
     );
   }
 }
-

@@ -13,15 +13,14 @@ class DetailModule extends ChildModule {
   @override
   List<ModularRouter> get routers => 
   [
-    ModularRouter(Modular.initialRoute, child: (_, args) => DetailPage()),
-    ModularRouter
-    (
-      "/:name", 
-      child: (_, args) => DetailPage
-      ( 
-        name:  args.params['name'],
-      )
-    ),
+    ModularRouter(Modular.initialRoute, child: (_, args) => DetailPage(data: args.data,)),
+    // ModularRouter
+    // (
+    //   "/:name", 
+    //   child: (_, args) => DetailPage
+    //   ( 
+    //   )
+    // ),
   ];
 
   static Inject get to => Inject<DetailModule>.of();

@@ -1,16 +1,15 @@
+import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'detail_controller.dart';
 
 class DetailPage extends StatefulWidget {
-  final String title;
-  final String name;
+  final ProductModel data;
   const DetailPage
   (
     {
       Key key, 
-      this.title = "Detail",
-      this.name,
+      this.data
     }
   ) : super(key: key);
 
@@ -24,9 +23,6 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Column(
         children: <Widget>
         [
@@ -34,7 +30,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
           (
             child: Text
             (
-              "Name : ${widget.name}"
+              "Name : ${widget.data.id}"
             ),
           )
         ],

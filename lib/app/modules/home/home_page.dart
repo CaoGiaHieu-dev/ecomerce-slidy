@@ -80,7 +80,12 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                     // height: 300.0 *6 - 200,
                     decoration: BoxDecoration
                     (
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.only
+                      (
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                        
+                      ),
                       color: HexColor("#f2eaec")
                     ),
                     child: Column

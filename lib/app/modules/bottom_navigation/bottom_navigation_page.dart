@@ -58,21 +58,6 @@ class _BottomNavigationPageState
                 icon: Icon(Icons.history),
                 label: "Detail",
               ),
-              // BottomNavigationBarItem
-              // (
-              //   icon: Icon(Icons.favorite),
-              //   label: "Favorite",
-              // ),
-              // BottomNavigationBarItem
-              // (
-              //   icon: Icon(Icons.people),
-              //   label: "User",
-              // ),
-              // BottomNavigationBarItem
-              // (
-              //   icon: Icon(Icons.people),
-              //   label: "User",
-              // ),
             ],
             currentIndex: controller.tabIndex,
             onTap: (value) 
