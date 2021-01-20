@@ -12,7 +12,7 @@ class CategoryRepository extends Disposable {
   Future<List<CategoryModel>> fetchCategory() async {
     try
     {
-      final response =  await client.get('/Categories');
+      final response =  await client.get('/products/categories/');
       return (response.data as List).map((e) => CategoryModel.fromJSON(e)).toList();
     } on DioError catch(e)
     {

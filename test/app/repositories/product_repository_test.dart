@@ -9,13 +9,13 @@ void main() {
   // MockClient client;
 
   setUp(() {
-    // repository = CategoryRepository();
+    // repository = ProductRepository();
     // client = MockClient();
   });
 
-  group('CategoryRepository Test', () {
+  group('ProductRepository Test', () {
     //  test("First Test", () {
-    //    expect(repository, isInstanceOf<CategoryRepository>());
+    //    expect(repository, isInstanceOf<ProductRepository>());
     //  });
 
     test('returns a Post if the http call completes successfully', () async {
