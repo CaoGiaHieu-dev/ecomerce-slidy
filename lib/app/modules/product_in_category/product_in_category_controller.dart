@@ -12,6 +12,7 @@ class ProductInCategoryController = _ProductInCategoryControllerBase
 abstract class _ProductInCategoryControllerBase with Store {
   final ProductRepository repository;
   final String name;
+
   @observable
   ObservableFuture<List<ProductModel>> productList;
 
@@ -20,14 +21,19 @@ abstract class _ProductInCategoryControllerBase with Store {
   // setCategoryName(String name ) => categoryId=name;
 
   @action
-  _ProductInCategoryControllerBase(this.repository ,this.name)
+  _ProductInCategoryControllerBase(this.repository, this.name )
   {
     fetchProduct(name);
+    
   }
 
-  fetchProduct( String name)
+  fetchProduct( String nameCategory)
   {
-    productList = repository.fetchProductInCategory(name).asObservable();
+    if(nameCategory !=null)
+    {
+      productList = repository.fetchProductInCategory(nameCategory).asObservable();
+    }
   }
+
 
 }
