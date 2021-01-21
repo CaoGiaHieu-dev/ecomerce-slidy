@@ -49,7 +49,8 @@ class _ProductInCategoryPageState
           [
             HeaderPage
             (
-              image: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg"
+              image: "https://casio.anhkhue.com/upload/images/BANNERPROMTION/DESKTOP/271x400-4.jpg",
+              height: MediaQuery.of(context).size.height * 0.5 -80 ,
             ),
 
             SafeArea

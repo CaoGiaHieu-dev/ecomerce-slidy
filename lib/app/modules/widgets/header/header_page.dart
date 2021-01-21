@@ -7,7 +7,8 @@ import 'package:ecomerce/helper/image.dart';
 
 class HeaderPage extends StatefulWidget {
   final String image;
-  const HeaderPage({Key key, this.image }) : super(key: key);
+  final double height;
+  const HeaderPage({Key key, this.image , this.height }) : super(key: key);
 
   @override
   _HeaderPageState createState() => _HeaderPageState();
@@ -22,7 +23,10 @@ class _HeaderPageState extends ModularState<HeaderPage, HeaderController> {
     return Container
     (
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.5 - 100,
+      height: this.widget.height !=null
+      ? this.widget.height
+      : MediaQuery.of(context).size.height * 0.5 - 100,
+      
       // height: double.infinity,
       // width: MediaQuery.of(context).size.width ,
       child: checkTypeImageNetworkSvg(this.widget.image)

@@ -9,18 +9,18 @@ part of 'detail_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$DetailController on _DetailControllerBase, Store {
-  final _$valueAtom = Atom(name: '_DetailControllerBase.value');
+  final _$listCartAtom = Atom(name: '_DetailControllerBase.listCart');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  List<ProductModel> get listCart {
+    _$listCartAtom.reportRead();
+    return super.listCart;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set listCart(List<ProductModel> value) {
+    _$listCartAtom.reportWrite(value, super.listCart, () {
+      super.listCart = value;
     });
   }
 
@@ -28,11 +28,11 @@ mixin _$DetailController on _DetailControllerBase, Store {
       ActionController(name: '_DetailControllerBase');
 
   @override
-  void increment() {
+  void addToCart(ProductModel data) {
     final _$actionInfo = _$_DetailControllerBaseActionController.startAction(
-        name: '_DetailControllerBase.increment');
+        name: '_DetailControllerBase.addToCart');
     try {
-      return super.increment();
+      return super.addToCart(data);
     } finally {
       _$_DetailControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +41,7 @@ mixin _$DetailController on _DetailControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+listCart: ${listCart}
     ''';
   }
 }

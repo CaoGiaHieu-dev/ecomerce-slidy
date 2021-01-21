@@ -73,10 +73,10 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                   height: 20.0,
                 ),
                 Padding
-                  (
+                (
                   padding: const EdgeInsets.only
                   (
-                    top: 20.0
+                    top: 30.0
                   ),
                   child: Row
                   (
@@ -95,23 +95,64 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                         onPressed: () => Navigator.pop(context)
                       ),
                       Spacer(),
-                      MaterialButton
+                      Stack
                       (
-                        padding: const EdgeInsets.all(8.0),
-                        shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(Icons.add_shopping_cart),
-                        color: HexColor("#f2eaec"),
-                        textColor: Colors.black,
-                        minWidth: 0,
-                        height: 40,
-                        onPressed: () => null
+                        children: <Widget>
+                        [
+                          MaterialButton
+                          (
+                            padding: const EdgeInsets.all(8.0),
+                            shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                            child: Icon(Icons.add_shopping_cart),
+                            color: HexColor("#f2eaec"),
+                            textColor: Colors.black,
+                            minWidth: 0,
+                            height: 40,
+                            onPressed: () => null
+                          ),
+                          if (controller.listCart.isNotEmpty)
+                            Positioned
+                            (
+                              top: -3,
+                              right: -10,
+                              child: Container
+                              (
+                                height: 20,
+                                width: 40,
+                                decoration: BoxDecoration
+                                (
+                                  color: HexColor("#f2eaec"),
+                                  shape: BoxShape.circle,
+                                  border: Border.all
+                                  (
+                                    width: 1.5, 
+                                    color: Colors.transparent
+                                  ),
+                                ),
+                                child: Center
+                                (
+                                  child: Text
+                                  (
+                                    "${controller.listCart.length}",
+                                    style: TextStyle
+                                    (
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: HexColor("#ff0340"),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                        ],
                       ),
                     ]
                   ),
                 ),
                 Spacer(),
                 SizedBox(height: 10.0),
+                //title
                 Hero(
                   tag: "title${this.widget.data.id}",
                   child: Material
@@ -129,10 +170,13 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                     ),
                   ),
                 ),
+
                 SizedBox
                 (
                   height: 20.0
                 ),
+
+                //price
                 Hero
                 (
                   tag: "price${this.widget.data.id}",
@@ -153,6 +197,27 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                   ),
                 ),
                 SizedBox(height: 20.0),
+
+                // //description
+                // Hero
+                // (
+                //   tag: "description${this.widget.data.id}",
+                //   child: Material
+                //   (
+                //     type: MaterialType.transparency,
+                //     child: Text
+                //     (
+                //       "${this.widget.data.description}" ,
+                //       textAlign: TextAlign.start, 
+                //       style: TextStyle
+                //       (
+                //         fontSize: 30.0,
+                //         fontWeight: FontWeight.bold,
+                //         color: HexColor("#ff0340")
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 Row
                 (
                   children: <Widget>
@@ -173,7 +238,10 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                           (
                             borderRadius: BorderRadius.circular(40.0)
                           ),
-                          onPressed: () => null,
+                          onPressed: ()
+                          {
+                            controller.addToCart(this.widget.data);
+                          },
                           child: Text
                           (
                             "Add to cart"
