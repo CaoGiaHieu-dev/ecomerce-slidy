@@ -77,7 +77,17 @@ class _CategoryPageState extends ModularState<CategoryPage, CategoryController> 
 
               return Swiper
               (
-                
+                onTap: (index) 
+                {
+                  _controller.fetchProduct(data[index].name) ;
+                  Modular.to.pushNamed
+                  (
+                    "/category/:name",
+                    // "/category/${data[index].name}",
+                    arguments: data[index].name,
+
+                  );
+                },
                 pagination: new SwiperPagination(),
                 autoplay: true,
                 autoplayDelay: 1000 * 10  ,
@@ -85,73 +95,60 @@ class _CategoryPageState extends ModularState<CategoryPage, CategoryController> 
                 
                 itemBuilder: (context, index) 
                 {
-                  return GestureDetector
+                  return Container
                   (
-                    onTap: ()
-                    {
-                      _controller.fetchProduct(data[index].name) ;
-                      Modular.to.pushNamed
-                      (
-                        "/category/:name",
-                        // "/category/${data[index].name}",
-                        arguments: data[index].name,
-                      );
-                    },
-                    child: Container
+                    decoration: BoxDecoration
                     (
-                      decoration: BoxDecoration
+                      borderRadius: BorderRadius.all
                       (
-                        borderRadius: BorderRadius.all
-                        (
-                          Radius.circular(25.0)
-                        ),
-                        shape: BoxShape.rectangle,
-                        boxShadow: 
-                        [
-                          BoxShadow
-                          (
-                            color: Colors.white,
-                            blurRadius: 10.0
-                          )
-                        ]
+                        Radius.circular(25.0)
                       ),
-                      child: Card
-                      (
-                        shadowColor: Colors.grey,
-                        child: Stack
+                      shape: BoxShape.rectangle,
+                      boxShadow: 
+                      [
+                        BoxShadow
                         (
-                          children: <Widget>
-                          [
-                            CachedNetworkImage
+                          color: Colors.white,
+                          blurRadius: 10.0
+                        )
+                      ]
+                    ),
+                    child: Card
+                    (
+                      shadowColor: Colors.grey,
+                      child: Stack
+                      (
+                        children: <Widget>
+                        [
+                          CachedNetworkImage
+                          (
+                            height: double.infinity,
+                            width: double.infinity,
+                            imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg",
+                            alignment: Alignment.center,
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
+                            errorWidget: (context, url, error) => new Icon(Icons.error),
+                          ),
+                          Container
+                          (
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration
                             (
-                              height: double.infinity,
-                              width: double.infinity,
-                              imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg",
-                              alignment: Alignment.center,
-                              fit: BoxFit.cover,
-                              placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
-                              errorWidget: (context, url, error) => new Icon(Icons.error),
+                              shape: BoxShape.rectangle,
                             ),
-                            Container
-                            (
-                              alignment: Alignment.center,
-                              decoration: BoxDecoration
-                              (
-                                shape: BoxShape.rectangle,
-                              ),
-                              // child: Text
-                              // (
-                              //   "${data[index].name}",
-                              //   style: TextStyle
-                              //   (
-                              //     fontSize: 15,
-                              //     color: Colors.black,
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // ),
-                            )
-                          ],
-                        ),
+                            // child: Text
+                            // (
+                            //   "${data[index].name}",
+                            //   style: TextStyle
+                            //   (
+                            //     fontSize: 15,
+                            //     color: Colors.black,
+                            //     fontWeight: FontWeight.bold,
+                            //   ),
+                            // ),
+                          )
+                        ],
                       ),
                     ),
                   );

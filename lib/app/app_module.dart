@@ -21,7 +21,7 @@ class AppModule extends MainModule {
         Bind((i) => DetailController()),
         // Bind((i) => AppModule()),
         Bind((i) => HomeController()),
-        Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(), null )),
+        Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
   ];
 
   @override

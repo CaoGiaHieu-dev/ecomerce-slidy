@@ -9,7 +9,7 @@ class CategoryModule extends ChildModule {
   @override
   List<Bind> get binds => 
   [
-    Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>() ,Modular.args.data )),
+    Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
 
 
     //repository

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_controller.dart';
 import 'package:ecomerce/app/repositories/category_repository.dart';
-import 'package:ecomerce/app/modules/home/widgets/header/header_controller.dart';
+import 'package:ecomerce/app/modules/widgets/header/header_controller.dart';
 import 'package:ecomerce/app/repositories/product_repository.dart';
 
 import '../../repositories/category_repository.dart';

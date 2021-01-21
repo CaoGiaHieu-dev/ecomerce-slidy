@@ -14,7 +14,6 @@ abstract class _CategoryControllerBase with Store {
   ObservableFuture<List<CategoryModel>> categoryList;
 
   @action
-
   _CategoryControllerBase(this.repository)
   {
     categoryList = repository.fetchCategory().asObservable();

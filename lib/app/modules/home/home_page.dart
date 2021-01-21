@@ -1,10 +1,10 @@
 import 'package:ecomerce/app/modules/home/widgets/category/category_page.dart';
-import 'package:ecomerce/app/modules/home/widgets/header/header_page.dart';
 import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'home_controller.dart';
+import 'package:ecomerce/app/modules/widgets/header/header_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -45,7 +45,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
         (
           children: <Widget>
           [
-            HeaderPage(),
+            HeaderPage
+            (
+              image: "https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/aa.svg",
+            ),
             SafeArea
             (
               child: Column
@@ -108,31 +111,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       ],
                     ),
                   )
-                  // Expanded
-                  // (
-                  //   child: Container
-                  //   (
-                  //     height: MediaQuery.of(context).size.height +200,
-                  //     decoration: BoxDecoration
-                  //     (
-                  //       borderRadius: BorderRadius.circular(20.0),
-                  //       color: Colors.white
-                  //     ),
-                  //     child: Column
-                  //     (
-                  //       mainAxisSize: MainAxisSize.min,
-                  //       children: <Widget>
-                  //       [
-                  //         CategoryPage(),
-                  //         Expanded
-                  //         (
-                  //           child: HotItemsPage(),
-                  //         )
-                  //         
-                  //       ],
-                  //     ),
-                  //   )
-                  // )
                 ]
               )
             )
