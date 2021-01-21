@@ -7,7 +7,7 @@ class DetailModule extends ChildModule {
   @override
   List<Bind> get binds => 
   [
-    Bind( (i)=> DetailController(null))
+    Bind( (i)=> DetailController())
   ];
 
   @override

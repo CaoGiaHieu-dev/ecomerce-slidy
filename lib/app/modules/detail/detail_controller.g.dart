@@ -12,13 +12,13 @@ mixin _$DetailController on _DetailControllerBase, Store {
   final _$listCartAtom = Atom(name: '_DetailControllerBase.listCart');
 
   @override
-  List<ProductModel> get listCart {
+  ObservableList<ProductModel> get listCart {
     _$listCartAtom.reportRead();
     return super.listCart;
   }
 
   @override
-  set listCart(List<ProductModel> value) {
+  set listCart(ObservableList<ProductModel> value) {
     _$listCartAtom.reportWrite(value, super.listCart, () {
       super.listCart = value;
     });

@@ -2,6 +2,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'detail_controller.dart';
@@ -111,7 +112,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                             height: 40,
                             onPressed: () => null
                           ),
-                          if (controller.listCart.isNotEmpty)
+                          if (controller.listCart !=null)
                             Positioned
                             (
                               top: -3,
@@ -132,14 +133,18 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                                 ),
                                 child: Center
                                 (
-                                  child: Text
+                                  child: Observer
                                   (
-                                    "${controller.listCart.length}",
-                                    style: TextStyle
+                                    builder:(_) => Text
                                     (
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: HexColor("#ff0340"),
+                                      "${controller.listCart.length}",
+                                      // controller.value.toString(),
+                                      style: TextStyle
+                                      (
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.w600,
+                                        color: HexColor("#ff0340"),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -241,6 +246,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                           onPressed: ()
                           {
                             controller.addToCart(this.widget.data);
+                            // controller.text();
                           },
                           child: Text
                           (
