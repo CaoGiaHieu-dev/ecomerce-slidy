@@ -18,6 +18,8 @@ class HomeModule extends ChildModule {
     Bind( (i)=> HeaderController() ),
     Bind((i) => CategoryController( i.get<CategoryRepository>() )),
     Bind( (i) => HotItemsController( i.get<ProductRepository>()  ))  ,
+    
+    
 
     //repository
     Bind( (i) => CategoryRepository(i.get<Dio>())), 
@@ -30,14 +32,11 @@ class HomeModule extends ChildModule {
   ];
 
   @override
-  List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
-        // ModularRouter
-        // (
-        //   "/detail",
-        //   module: DetailModule(),
-        // )
-      ];
+  List<ModularRouter> get routers => 
+  [
+    ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
+        
+  ];
 
   static Inject get to => Inject<HomeModule>.of();
 }

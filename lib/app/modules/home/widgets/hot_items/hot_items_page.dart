@@ -1,4 +1,3 @@
-import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

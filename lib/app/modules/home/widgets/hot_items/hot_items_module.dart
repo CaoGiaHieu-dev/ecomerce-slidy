@@ -1,5 +1,4 @@
 import 'package:ecomerce/app/modules/detail/detail_controller.dart';
-import 'package:ecomerce/app/modules/detail/detail_module.dart';
 import 'package:ecomerce/app/modules/detail/detail_page.dart';
 import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';

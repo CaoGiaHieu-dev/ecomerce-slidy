@@ -25,7 +25,7 @@ class _HeaderPageState extends ModularState<HeaderPage, HeaderController> {
       // width: MediaQuery.of(context).size.width ,
       child: SvgPicture.network
       (
-        ( "https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/aa.svg"),
+        "https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/aa.svg",
         fit: BoxFit.fill,
         placeholderBuilder: (context) 
         {

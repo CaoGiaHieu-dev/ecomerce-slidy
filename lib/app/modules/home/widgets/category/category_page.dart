@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecomerce/app/modules/product_in_category/product_in_category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -15,6 +16,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends ModularState<CategoryPage, CategoryController> {
+  final _controller = Modular.get<ProductInCategoryController>();
   @override
   Widget build(BuildContext context) 
   {
@@ -75,63 +77,81 @@ class _CategoryPageState extends ModularState<CategoryPage, CategoryController> 
 
               return Swiper
               (
+                
                 pagination: new SwiperPagination(),
                 autoplay: true,
                 autoplayDelay: 1000 * 10  ,
                 itemCount: data.length,
-
+                
                 itemBuilder: (context, index) 
                 {
-                  return Container
+                  return GestureDetector
                   (
-                    decoration: BoxDecoration
-                    (
-                      shape: BoxShape.rectangle,
-                      boxShadow: 
-                      [
-                        BoxShadow
-                        (
-                          color: Colors.indigo,
-                          blurRadius: 10.0
-                        )
-                      ]
-                    ),
-                    child: Card
-                    (
-                      shadowColor: Colors.grey,
-                      child: Stack
+                    onTap: ()
+                    {
+                      _controller.fetchProduct(data[index].name) ;
+                      Modular.to.pushNamed
                       (
-                        children: <Widget>
+                        "/category/:name",
+                        // "/category/${data[index].name}",
+                        arguments: data[index].name,
+                      );
+                    },
+                    child: Container
+                    (
+                      decoration: BoxDecoration
+                      (
+                        borderRadius: BorderRadius.all
+                        (
+                          Radius.circular(25.0)
+                        ),
+                        shape: BoxShape.rectangle,
+                        boxShadow: 
                         [
-                          CachedNetworkImage
+                          BoxShadow
                           (
-                            height: double.infinity,
-                            width: double.infinity,
-                            imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg",
-                            alignment: Alignment.center,
-                            fit: BoxFit.cover,
-                            placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
-                            errorWidget: (context, url, error) => new Icon(Icons.error),
-                          ),
-                          Container
-                          (
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration
-                            (
-                              shape: BoxShape.rectangle,
-                            ),
-                            // child: Text
-                            // (
-                            //   "${data[index].name}",
-                            //   style: TextStyle
-                            //   (
-                            //     fontSize: 15,
-                            //     color: Colors.black,
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
+                            color: Colors.white,
+                            blurRadius: 10.0
                           )
-                        ],
+                        ]
+                      ),
+                      child: Card
+                      (
+                        shadowColor: Colors.grey,
+                        child: Stack
+                        (
+                          children: <Widget>
+                          [
+                            CachedNetworkImage
+                            (
+                              height: double.infinity,
+                              width: double.infinity,
+                              imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg",
+                              alignment: Alignment.center,
+                              fit: BoxFit.cover,
+                              placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),
+                              errorWidget: (context, url, error) => new Icon(Icons.error),
+                            ),
+                            Container
+                            (
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration
+                              (
+                                shape: BoxShape.rectangle,
+                              ),
+                              // child: Text
+                              // (
+                              //   "${data[index].name}",
+                              //   style: TextStyle
+                              //   (
+                              //     fontSize: 15,
+                              //     color: Colors.black,
+                              //     fontWeight: FontWeight.bold,
+                              //   ),
+                              // ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   );

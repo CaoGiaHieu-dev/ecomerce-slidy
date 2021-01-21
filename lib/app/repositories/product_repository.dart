@@ -32,6 +32,18 @@ class ProductRepository extends Disposable {
     }
   }
 
+  Future<List<ProductModel>> fetchProductInCategory(String category) async
+  {
+    try
+    {
+      final response = await client.get('/products/category/$category');
+      return (response.data as List).map((e) => ProductModel.fromJson(e)).toList();
+    } on DioError catch(e)
+    {
+      throw (e.message);
+    }
+  }
+
   //dispose will be called automatically
   @override
   void dispose() {}

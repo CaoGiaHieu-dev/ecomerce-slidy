@@ -25,9 +25,14 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       (
         onPressed: ()
         {
-          Modular.to.pushNamed("/detail/${controller.value}");
+          // Modular.to.pushNamed("/detail/${controller.value}");
         },
-        child: Icon(Icons.pages),
+        backgroundColor: HexColor("#f2eaec"),
+        child: Icon
+        (
+          Icons.shopping_bag,
+          color: HexColor("#ff0340"),
+        ),
       ),
       // appBar: AppBar
       // (
@@ -49,28 +54,29 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                 mainAxisSize: MainAxisSize.max,
                 children : <Widget>
                 [
-                  // Padding
-                  // (
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Row
-                  //   (
-                  //     children: <Widget>
-                  //     [
-                  //       MaterialButton
-                  //       (
-                  //         padding: const EdgeInsets.all(8.0),
-                  //         shape: RoundedRectangleBorder(
-                  //         borderRadius: BorderRadius.circular(10.0)),
-                  //         child: Icon(Icons.arrow_back_ios),
-                  //         color: HexColor("#f2eaec"),
-                  //         textColor: Colors.black,
-                  //         minWidth: 0,
-                  //         height: 40,
-                  //         onPressed: () => null,
-                  //       ),
-                  //     ]
-                  //   ),
-                  // ),
+                  Padding
+                  (
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row
+                    (
+                      children: <Widget>
+                      [
+                        Spacer(),
+                        MaterialButton
+                        (
+                          padding: const EdgeInsets.all(8.0),
+                          shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                          child: Icon(Icons.person_outline_outlined),
+                          color: HexColor("#f2eaec"),
+                          textColor: Colors.black,
+                          minWidth: 0,
+                          height: 40,
+                          onPressed: () => null,
+                        ),
+                      ]
+                    ),
+                  ),
                   SizedBox
                   (
                     height: MediaQuery.of(context).size.height * 0.25,
