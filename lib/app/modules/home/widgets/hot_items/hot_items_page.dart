@@ -76,22 +76,12 @@ class _HotItemsPageState
               itemCount: data.length,
               itemBuilder: (context, index) 
               {
-                return GestureDetector
+                return ItemsWidget
                 (
-                  onTap: ()
-                  {
-                    Modular.to.pushNamed
-                    (
-                      "/detail",
-                      arguments: data[index]
-                    );
-                  },
-                  child: ItemsWidget
-                  (
-                    image: data[index].image,
-                    price: data[index].price,
-                    title: data[index].title,
-                  )
+                  image: data[index].image,
+                  price: data[index].price,
+                  title: data[index].title,
+                  arguments: data[index],
                 );
               },
             );

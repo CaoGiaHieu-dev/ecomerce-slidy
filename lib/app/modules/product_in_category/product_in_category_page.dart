@@ -1,10 +1,11 @@
+
+import 'package:ecomerce/app/modules/components/fab/fab_widget.dart';
 import 'package:ecomerce/app/modules/components/header/header_page.dart';
 import 'package:ecomerce/app/modules/components/items/items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:ecomerce/helper/string.dart';
 import 'product_in_category_controller.dart';
 
 class ProductInCategoryPage extends StatefulWidget {
@@ -29,19 +30,7 @@ class _ProductInCategoryPageState
   {
     return Scaffold
     (
-      floatingActionButton: FloatingActionButton
-      (
-        onPressed: ()
-        {
-          // Modular.to.pushNamed("/detail/${controller.value}");
-        },
-        backgroundColor: HexColor("#f2eaec"),
-        child: Icon
-        (
-          Icons.shopping_bag,
-          color: HexColor("#ff0340"),
-        ),
-      ),
+      floatingActionButton: FabWidget(),
       body: SingleChildScrollView
       (
         child: Stack
@@ -174,22 +163,12 @@ class _ProductInCategoryPageState
                               itemCount: data.length,
                               itemBuilder: (context, index) 
                               {
-                                return GestureDetector
+                                return ItemsWidget
                                 (
-                                  onTap: ()
-                                  {
-                                    Modular.to.pushNamed
-                                    (
-                                      "/detail",
-                                      arguments: data[index]
-                                    );
-                                  },
-                                  child: ItemsWidget
-                                  (
-                                    image: data[index].image,
-                                    price: data[index].price,
-                                    title: data[index].title,
-                                  )
+                                  image: data[index].image,
+                                  price: data[index].price,
+                                  title: data[index].title,
+                                  arguments: data[index]
                                 );
                               },
                             );

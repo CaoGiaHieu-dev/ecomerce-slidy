@@ -108,7 +108,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                             padding: const EdgeInsets.all(8.0),
                             shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                            child: Icon(Icons.add_shopping_cart),
+                            child: Icon(Icons.shopping_bag),
                             color: HexColor("#f2eaec"),
                             textColor: Colors.black,
                             minWidth: 0,
@@ -124,25 +124,25 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                               (
                                 height: 20,
                                 width: 40,
-                                decoration: BoxDecoration
-                                (
-                                  color: HexColor("#f2eaec"),
-                                  shape: BoxShape.circle,
-                                  border: Border.all
-                                  (
-                                    width: 1.5, 
-                                    color: Colors.transparent
-                                  ),
-                                ),
+                                // decoration: BoxDecoration
+                                // (
+                                //   color: HexColor("#f2eaec"),
+                                //   shape: BoxShape.circle,
+                                //   border: Border.all
+                                //   (
+                                //     width: 1.5, 
+                                //     color: Colors.transparent
+                                //   ),
+                                // ),
                                 child: Center
                                 (
                                   child: Observer
                                   (
                                     builder:(_) => Text
                                     (
-                                      // "${controller.listCart.length}",
-                                      "${listCart.listCart.length}",
-                                      // controller.value.toString(),
+                                      listCart.listCart.length !=0 ?
+                                      "${listCart.listCart.length}"
+                                      :"",
                                       style: TextStyle
                                       (
                                         fontSize: 15,

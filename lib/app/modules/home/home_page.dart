@@ -1,3 +1,4 @@
+import 'package:ecomerce/app/modules/components/fab/fab_widget.dart';
 import 'package:ecomerce/app/modules/components/header/header_page.dart';
 import 'package:ecomerce/app/modules/home/widgets/category/category_page.dart';
 import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_page.dart';
@@ -18,27 +19,11 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   //use 'controller' variable to access controller
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) 
+  {
     return Scaffold
     (
-      floatingActionButton: FloatingActionButton
-      (
-        onPressed: ()
-        {
-          // Modular.to.pushNamed("/detail/${controller.value}");
-        },
-        backgroundColor: HexColor("#f2eaec"),
-        child: Icon
-        (
-          Icons.shopping_bag,
-          color: HexColor("#ff0340"),
-        ),
-      ),
-      // appBar: AppBar
-      // (
-      //   title: Text(widget.title),
-      //   backgroundColor: kMainColor,
-      // ),
+      floatingActionButton: FabWidget(),
       body: SingleChildScrollView
       (
         child: Stack
@@ -102,12 +87,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       children: <Widget>
                       [
                         CategoryPage(),
-                        HotItemsPage()
-                        // Expanded
-                        // (
-                        //   child: HotItemsPage()
-                        // )
-                        // HotItemsPage(),
+                        HotItemsPage(),
                       ],
                     ),
                   )

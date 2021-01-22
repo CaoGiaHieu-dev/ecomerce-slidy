@@ -1,6 +1,4 @@
 import 'package:ecomerce/app/modules/cart/cart_controller.dart';
-import 'package:ecomerce/app/modules/detail/detail_controller.dart';
-import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';

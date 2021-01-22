@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:ecomerce/app/modules/cart/cart_controller.dart';
 import 'package:ecomerce/app/modules/components/header/header_controller.dart';
 import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_controller.dart';
 import 'package:ecomerce/app/repositories/category_repository.dart';
@@ -16,6 +17,7 @@ class HomeModule extends ChildModule {
   List<Bind> get binds => 
   [
     Bind( (i)=> HeaderController() ),
+    Bind((i) =>CartController()),
     Bind((i) => CategoryController( i.get<CategoryRepository>() )),
     Bind( (i) => HotItemsController( i.get<ProductRepository>()  ))  ,
     
@@ -35,6 +37,7 @@ class HomeModule extends ChildModule {
   List<ModularRouter> get routers => 
   [
     ModularRouter(Modular.initialRoute, child: (_, args) => HomePage()),
+    // ModularRouter("/cart" , child: (_,args) => CartPage())
         
   ];
 

@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_modular/flutter_modular_test.dart';
 
-import 'package:ecomerce/app/modules/cart/cart_page.dart';
 
 void main() {
   testWidgets('CartPage has title', (tester) async {
