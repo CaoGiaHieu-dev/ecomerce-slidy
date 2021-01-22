@@ -1,3 +1,4 @@
+import 'package:ecomerce/app/modules/cart/widgets/checkout/checkout_widget.dart';
 import 'package:ecomerce/app/modules/components/items/items_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -23,6 +24,7 @@ class _CartPageState extends ModularState<CartPage, CartController> {
     final listCart = Provider.of<CartController>(context);
     return Scaffold
     (
+      bottomNavigationBar: CheckoutWidget(),
       backgroundColor: HexColor("#f2eaec"),
       appBar: AppBar
       (

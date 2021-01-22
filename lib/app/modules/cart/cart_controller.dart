@@ -34,21 +34,5 @@ abstract class _CartControllerBase with Store {
   {
     cart.removeWhere((element) => element==data);
   }
-
-  @action 
-  void showListCart()
-  {
-    int id;
-    listCart.forEach
-    (
-      (element) 
-      { 
-        if(id != null && element.id != id)
-        {
-          cartShow.add(element);
-          id= element.id;
-        }
-      }
-    );
-  }
+  
 }

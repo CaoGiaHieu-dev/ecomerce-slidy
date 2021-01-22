@@ -84,17 +84,6 @@ mixin _$CartController on _CartControllerBase, Store {
   }
 
   @override
-  void showListCart() {
-    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
-        name: '_CartControllerBase.showListCart');
-    try {
-      return super.showListCart();
-    } finally {
-      _$_CartControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 cart: ${cart},
