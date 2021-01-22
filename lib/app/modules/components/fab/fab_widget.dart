@@ -40,11 +40,11 @@ class FabWidget extends StatelessWidget {
           ),
           Positioned
           (
-            top: -5,
-            right: -20,
+            top: -8,
+            right: -15,
             child: Container
             (
-              height: 25,
+              height: 30,
               width: 50,
               child: Center
               (

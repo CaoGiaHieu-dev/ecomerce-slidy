@@ -32,6 +32,21 @@ mixin _$CartController on _CartControllerBase, Store {
     });
   }
 
+  final _$cartShowAtom = Atom(name: '_CartControllerBase.cartShow');
+
+  @override
+  ObservableList<ProductModel> get cartShow {
+    _$cartShowAtom.reportRead();
+    return super.cartShow;
+  }
+
+  @override
+  set cartShow(ObservableList<ProductModel> value) {
+    _$cartShowAtom.reportWrite(value, super.cartShow, () {
+      super.cartShow = value;
+    });
+  }
+
   final _$_CartControllerBaseActionController =
       ActionController(name: '_CartControllerBase');
 
@@ -47,9 +62,43 @@ mixin _$CartController on _CartControllerBase, Store {
   }
 
   @override
+  void removeItems(ProductModel data) {
+    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
+        name: '_CartControllerBase.removeItems');
+    try {
+      return super.removeItems(data);
+    } finally {
+      _$_CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deteleItems(ProductModel data) {
+    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
+        name: '_CartControllerBase.deteleItems');
+    try {
+      return super.deteleItems(data);
+    } finally {
+      _$_CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void showListCart() {
+    final _$actionInfo = _$_CartControllerBaseActionController.startAction(
+        name: '_CartControllerBase.showListCart');
+    try {
+      return super.showListCart();
+    } finally {
+      _$_CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 cart: ${cart},
+cartShow: ${cartShow},
 listCart: ${listCart}
     ''';
   }

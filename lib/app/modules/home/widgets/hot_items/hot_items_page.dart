@@ -82,6 +82,9 @@ class _HotItemsPageState
                   price: data[index].price,
                   title: data[index].title,
                   arguments: data[index],
+                  isCart: false,
+                  data : data[index],
+                  // textLength: 15,
                 );
               },
             );

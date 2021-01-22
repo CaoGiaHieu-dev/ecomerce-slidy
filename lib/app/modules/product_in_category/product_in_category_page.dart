@@ -168,7 +168,8 @@ class _ProductInCategoryPageState
                                   image: data[index].image,
                                   price: data[index].price,
                                   title: data[index].title,
-                                  arguments: data[index]
+                                  arguments: data[index],
+                                  isCart: false,
                                 );
                               },
                             );

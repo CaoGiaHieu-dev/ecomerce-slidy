@@ -1,6 +1,10 @@
+import 'package:ecomerce/app/modules/cart/cart_controller.dart';
 import 'package:ecomerce/helper/string.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 
 class ItemsWidget extends StatelessWidget 
 {
@@ -8,11 +12,27 @@ class ItemsWidget extends StatelessWidget
   final String title;
   final double price;
   final arguments;
+  final bool isCart;
+  final int textLength;
+  final data;
 
-  const ItemsWidget({Key key, this.image, this.title, this.price, this.arguments}) : super(key: key);
+  const ItemsWidget
+  (
+    {
+      Key key, 
+      this.image, 
+      this.title, 
+      this.price, 
+      this.arguments,
+      this.isCart,
+      this.textLength,
+      this.data
+    }
+  ) : super(key: key);
   @override
   Widget build(BuildContext context) 
   {
+    final listCart = Provider.of<CartController>(context);
     return GestureDetector 
     (
       onTap: () 
@@ -61,8 +81,17 @@ class ItemsWidget extends StatelessWidget
             (
               child: Container
               (
-                margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
-                padding: EdgeInsets.all(20.0),
+                margin: EdgeInsets.only
+                (
+                  top: 20.0, 
+                  bottom: 20.0
+                ),
+                padding: EdgeInsets.only
+                (
+                  top: 10.0,
+                  bottom: 10.0,
+                  left: 10
+                ),
                 decoration: BoxDecoration
                 (
                   borderRadius: BorderRadius.only
@@ -86,25 +115,185 @@ class ItemsWidget extends StatelessWidget
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>
                   [
-                    Text
+                    isCart 
+                    ?Row
                     (
-                      "${titleLength(this.title, 50)}",
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>
+                      [
+                        Text
+                        (
+                          "${titleLength(this.title, textLength==null ? 50 : textLength)}",
+                          maxLines: this.isCart ? 1 :3,
+                          style: TextStyle
+                          (
+                            fontSize: 15.0, 
+                            fontWeight: FontWeight.w700
+                          ),
+                        ),
+                        Spacer(),
+                        MaterialButton
+                        (
+                          padding: const EdgeInsets.all(8.0),
+                          shape: RoundedRectangleBorder
+                          (
+                            borderRadius: BorderRadius.circular(10.0)
+                          ),
+                          child: Icon
+                          (
+                            Icons.delete,
+                            size: 15,
+                            color: Colors.red,
+                          ),
+                          color: HexColor("#f2eaec"),
+                          textColor: Colors.black,
+                          minWidth: 0,
+                          height: 20,
+                          onPressed: ()
+                          {
+                            listCart.deteleItems(data);
+                          }
+                        ),
+                      ],
+                    )
+                    :Text
+                    (
+                      "${titleLength(this.title, textLength==null ? 50 : textLength)}",
+                      maxLines: this.isCart ? 1 :3,
                       style: TextStyle
                       (
                         fontSize: 15.0, 
                         fontWeight: FontWeight.w700
                       ),
                     ),
-                    Spacer(),
-                    Text
+                    // Spacer(),
+                    this.isCart
+                    ?Column
                     (
-                      "\$${this.price.toString()}",
-                        style: TextStyle
+                      children: <Widget>
+                      [
+                        Text
                         (
-                          color: Colors.red,
-                          fontSize: 30.0,
-                        )
+                          "Price : \$${this.price.toStringAsFixed(2)}",
+                            style: TextStyle
+                            (
+                              color: Colors.red,
+                              fontSize: 15.0,
+                            )
+                        ),
+                        SizedBox
+                        (
+                          height: 5,
+                        ),
+                        Observer
+                        (
+                          builder:(_) => Text
+                          (
+                            "Total : \$${(this.price * listCart.cart.where((element) => element.id==data.id).length).toStringAsFixed(2)}",
+                              style: TextStyle
+                              (
+                                color: Colors.red,
+                                fontSize: 15.0,
+                              )
+                          ),
+                        ),
+                      ],
+                    )
+                    :Column
+                    (
+                      children:<Widget> 
+                      [
+                        SizedBox
+                        (
+                          height: 50,
+                        ),
+                        Text
+                        (
+                          "\$${this.price}",
+                            style: TextStyle
+                            (
+                              color: Colors.red,
+                              fontSize: 30.0,
+                            )
+                        ),
+                      ],
                     ),
+                    Spacer(),
+                    this.isCart
+                    ? Row
+                    (
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>
+                      [ 
+                        MaterialButton
+                        (
+                          padding: const EdgeInsets.all(8.0),
+                          shape: RoundedRectangleBorder
+                          (
+                            borderRadius: BorderRadius.circular(10.0)
+                          ),
+                          child: Icon
+                          (
+                            Icons.remove,
+                            size: 15,
+                          ),
+                          color: HexColor("#f2eaec"),
+                          textColor: Colors.black,
+                          minWidth: 0,
+                          height: 20,
+                          onPressed: ()
+                          {
+                            listCart.removeItems(data);
+                          }
+                        ),
+
+                        SizedBox
+                        (
+                          width: 5,
+                        ),
+                        Observer
+                        (
+                          builder: (_) 
+                          {
+                            return Text
+                            (
+                              "${listCart.cart.where((element) => element.id==data.id).length}"
+                            );  
+                          },
+                        ),
+                        SizedBox
+                        (
+                          width: 5,
+                        ),
+                        MaterialButton
+                        (
+                          padding: const EdgeInsets.all(8.0),
+                          shape: RoundedRectangleBorder
+                          (
+                            borderRadius: BorderRadius.circular(10.0)
+                          ),
+                          child: Icon
+                          (
+                            Icons.add,
+                            size: 15,
+                          ),
+                          color: HexColor("#f2eaec"),
+                          textColor: Colors.black,
+                          minWidth: 0,
+                          height: 20,
+                          onPressed: () 
+                          {
+                            listCart.addToCart(data);
+                          }
+                        ),
+                      ],
+                    )
+                    :SizedBox
+                    (// height: 20.0,
+                    ),
+                    
                     // SizedBox
                     // (
                     //   height: 20.0,

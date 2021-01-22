@@ -11,12 +11,44 @@ abstract class _CartControllerBase with Store {
   @observable
   ObservableList<ProductModel> cart =ObservableList<ProductModel>() ;
 
+  @observable
+  ObservableList<ProductModel> cartShow =ObservableList<ProductModel>() ;
+
   @computed
   ObservableList<ProductModel> get listCart => ObservableList.of(cart);
+  
 
   @action
   void addToCart(ProductModel data) 
   {
     cart.add(data);
+  }
+  @action
+  void removeItems(ProductModel data) 
+  {
+    cart.remove(data);
+  }
+
+  @action
+  void deteleItems(ProductModel data)
+  {
+    cart.removeWhere((element) => element==data);
+  }
+
+  @action 
+  void showListCart()
+  {
+    int id;
+    listCart.forEach
+    (
+      (element) 
+      { 
+        if(id != null && element.id != id)
+        {
+          cartShow.add(element);
+          id= element.id;
+        }
+      }
+    );
   }
 }

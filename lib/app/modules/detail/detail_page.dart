@@ -113,13 +113,19 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                             textColor: Colors.black,
                             minWidth: 0,
                             height: 40,
-                            onPressed: () => null
+                            onPressed: ()
+                            {
+                              Modular.to.pushNamed
+                              (
+                                "/cart"
+                              );
+                            }
                           ),
                           if (listCart.listCart !=null)
                             Positioned
                             (
-                              top: -3,
-                              right: -10,
+                              top: 1,
+                              right: -5,
                               child: Container
                               (
                                 height: 20,
