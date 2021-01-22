@@ -124,7 +124,7 @@ class _CategoryPageState extends ModularState<CategoryPage, CategoryController> 
                           (
                             height: double.infinity,
                             width: double.infinity,
-                            imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/1052x600-hot-4.jpg",
+                            imageUrl: "https://casio.anhkhue.com/upload/images/SPHOT/DESKTOP/ga-2100-1a1.jpg",
                             alignment: Alignment.center,
                             fit: BoxFit.cover,
                             placeholder: (context, url) => Center(child: CircularProgressIndicator() ,),

@@ -1,3 +1,5 @@
+import 'package:ecomerce/app/modules/profile/widgets/login_form/login_form_widget.dart';
+import 'package:ecomerce/app/modules/profile/widgets/signup_form/signup_form_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -96,7 +98,21 @@ class LoginWidget extends StatelessWidget
                     textColor: Colors.black,
                     minWidth: 0,
                     height: 20,
-                    onPressed: () => null
+                    onPressed: ()=> 
+                    {
+                      showDialog
+                      (
+                        context: context,
+                        builder: (_)
+                        {
+                          return AnimatedSwitcher
+                          (
+                            duration:Duration(milliseconds: 300) ,
+                            child: LoginFormWidget(),
+                          );
+                        }
+                      )
+                    }
                   ),
                   Spacer(),
                   MaterialButton
@@ -120,7 +136,21 @@ class LoginWidget extends StatelessWidget
                     textColor: Colors.black,
                     minWidth: 0,
                     height: 20,
-                    onPressed: () => null
+                    onPressed: ()=> 
+                    {
+                      showDialog
+                      (
+                        context: context,
+                        builder: (_)
+                        {
+                          return AnimatedSwitcher
+                          (
+                            duration:Duration(milliseconds: 300) ,
+                            child: SignupFormWidget(),
+                          );
+                        }
+                      )
+                    }
                   ),
                   Spacer(),
                 ],
@@ -162,6 +192,14 @@ class LoginWidget extends StatelessWidget
             ],
           ),
         ),
+        // Container
+        // (
+        //   child: AnimatedSwitcher
+        //   (
+        //     duration: Duration(milliseconds: 200),
+        //     child: LoginWidget(),
+        //   ),
+        // )
       ],
     );
   }
