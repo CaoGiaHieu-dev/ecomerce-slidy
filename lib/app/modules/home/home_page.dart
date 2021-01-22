@@ -1,10 +1,10 @@
+import 'package:ecomerce/app/modules/components/header/header_page.dart';
 import 'package:ecomerce/app/modules/home/widgets/category/category_page.dart';
 import 'package:ecomerce/app/modules/home/widgets/hot_items/hot_items_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'home_controller.dart';
-import 'package:ecomerce/app/modules/widgets/header/header_page.dart';
 
 class HomePage extends StatefulWidget {
   final String title;

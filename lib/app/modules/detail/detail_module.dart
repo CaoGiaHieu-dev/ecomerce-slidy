@@ -1,3 +1,4 @@
+import 'package:ecomerce/app/modules/cart/cart_page.dart';
 import 'package:ecomerce/app/modules/detail/detail_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -14,13 +15,11 @@ class DetailModule extends ChildModule {
   List<ModularRouter> get routers => 
   [
     ModularRouter(Modular.initialRoute, child: (_, args) => DetailPage(data: args.data,)),
-    // ModularRouter
-    // (
-    //   "/:name", 
-    //   child: (_, args) => DetailPage
-    //   ( 
-    //   )
-    // ),
+    ModularRouter
+    (
+      "/cart", 
+      child: (_, args) => CartPage()
+    ),
   ];
 
   static Inject get to => Inject<DetailModule>.of();

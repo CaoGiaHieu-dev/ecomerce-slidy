@@ -1,7 +1,7 @@
+import 'package:ecomerce/app/modules/components/header/header_controller.dart';
 import 'package:ecomerce/app/modules/detail/detail_controller.dart';
 import 'package:ecomerce/app/modules/detail/detail_page.dart';
 import 'package:ecomerce/app/modules/product_in_category/product_in_category_page.dart';
-import 'package:ecomerce/app/modules/widgets/header/header_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ProductInCategoryModule extends ChildModule {

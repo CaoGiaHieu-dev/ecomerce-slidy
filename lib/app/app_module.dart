@@ -1,6 +1,8 @@
 
 import 'package:ecomerce/app/modules/bottom_navigation/bottom_navigation_controller.dart';
 import 'package:ecomerce/app/modules/bottom_navigation/bottom_navigation_module.dart';
+import 'package:ecomerce/app/modules/cart/cart_controller.dart';
+import 'package:ecomerce/app/modules/cart/cart_module.dart';
 import 'package:ecomerce/app/modules/detail/detail_controller.dart';
 import 'package:ecomerce/app/modules/detail/detail_module.dart';
 import 'package:ecomerce/app/modules/home/home_controller.dart';
@@ -22,6 +24,7 @@ class AppModule extends MainModule {
         // Bind((i) => AppModule()),
         Bind((i) => HomeController()),
         Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
+        Bind( (i)=> CartController()),
   ];
 
   @override
@@ -29,7 +32,8 @@ class AppModule extends MainModule {
         ModularRouter(Modular.initialRoute, module: BottomNavigationModule()),
         ModularRouter("/home" , module: HomeModule()),
         ModularRouter("/detail", module: DetailModule()),
-        ModularRouter("/category/:name", module: ProductInCategoryModule())
+        ModularRouter("/category/:name", module: ProductInCategoryModule()),
+        ModularRouter("/cart" , module: CartModule()),
       ];
 
   @override

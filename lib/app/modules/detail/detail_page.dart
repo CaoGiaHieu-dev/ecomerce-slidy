@@ -1,10 +1,12 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ecomerce/app/modules/cart/cart_controller.dart';
 import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'detail_controller.dart';
 
 class DetailPage extends StatefulWidget {
@@ -23,9 +25,10 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends ModularState<DetailPage, DetailController> {
   //use 'controller' variable to access controller
-
+  
   @override
   Widget build(BuildContext context) {
+    final listCart = Provider.of<CartController>(context);
     return Scaffold
     (
       body: Stack
@@ -112,7 +115,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                             height: 40,
                             onPressed: () => null
                           ),
-                          if (controller.listCart !=null)
+                          if (listCart.listCart !=null)
                             Positioned
                             (
                               top: -3,
@@ -137,7 +140,8 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                                   (
                                     builder:(_) => Text
                                     (
-                                      "${controller.listCart.length}",
+                                      // "${controller.listCart.length}",
+                                      "${listCart.listCart.length}",
                                       // controller.value.toString(),
                                       style: TextStyle
                                       (
@@ -245,7 +249,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                           ),
                           onPressed: ()
                           {
-                            controller.addToCart(this.widget.data);
+                            listCart.addToCart(this.widget.data);
                             // controller.text();
                           },
                           child: Text

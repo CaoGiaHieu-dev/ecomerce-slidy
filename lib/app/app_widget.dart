@@ -1,5 +1,9 @@
+import 'package:ecomerce/app/modules/cart/cart_controller.dart';
+import 'package:ecomerce/app/modules/detail/detail_controller.dart';
+import 'package:ecomerce/app/shared/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:provider/provider.dart';
 
 class AppWidget extends StatelessWidget {
   @override
@@ -12,17 +16,24 @@ class AppWidget extends StatelessWidget {
     //     statusBarColor: kMainColor
     //   )
     // );
-    return MaterialApp(
-      navigatorKey: Modular.navigatorKey,
-      debugShowCheckedModeBanner: false,
-      title: 'Shjn Milkys Restaurant',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white38,
-        primarySwatch: Colors.red,
-        accentColor: Colors.indigo,
+    return MultiProvider
+    (
+      providers: 
+      [
+        Provider<CartController>(create: (_) => CartController()),
+      ],
+      child: MaterialApp(
+        navigatorKey: Modular.navigatorKey,
+        debugShowCheckedModeBanner: false,
+        title: 'Shjn Milkys Restaurant',
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white38,
+          primarySwatch: Colors.red,
+          accentColor: Colors.indigo,
+        ),
+        initialRoute: '/',
+        onGenerateRoute: Modular.generateRoute,
       ),
-      initialRoute: '/',
-      onGenerateRoute: Modular.generateRoute,
     );
   }
 }

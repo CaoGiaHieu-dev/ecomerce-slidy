@@ -40,6 +40,7 @@ dependencies:
   geolocator: ^6.0.0+4
   google_maps_place_picker: ^1.0.0
   cached_network_image: ^2.3.3
+  provider: ^4.3.3
   flutter_swiper: ^1.1.6
   # flutter_custom_dialog: ^1.0.20
   # svg_cached_network_image: ^1.0.0+1
