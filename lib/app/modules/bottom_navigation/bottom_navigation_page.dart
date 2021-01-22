@@ -1,8 +1,9 @@
-import 'package:ecomerce/app/modules/detail/detail_module.dart';
 import 'package:ecomerce/app/modules/home/home_module.dart';
+import 'package:ecomerce/app/modules/profile/profile_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+
 import 'bottom_navigation_controller.dart';
 
 class BottomNavigationPage extends StatefulWidget {
@@ -36,7 +37,7 @@ class _BottomNavigationPageState
           modules: <ChildModule>
           [
             HomeModule(),
-            DetailModule(),
+            ProfileModule(),
           ],
         ),
       ),
@@ -55,8 +56,8 @@ class _BottomNavigationPageState
               ),
               BottomNavigationBarItem
               (
-                icon: Icon(Icons.history),
-                label: "Detail",
+                icon: Icon(Icons.person_pin_rounded),
+                label: "Account",
               ),
             ],
             currentIndex: controller.tabIndex,

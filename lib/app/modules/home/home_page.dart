@@ -55,7 +55,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           padding: const EdgeInsets.all(8.0),
                           shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0)),
-                          child: Icon(Icons.person_outline_outlined),
+                          child: Icon(Icons.notifications_active_outlined),
                           color: HexColor("#f2eaec"),
                           textColor: Colors.black,
                           minWidth: 0,

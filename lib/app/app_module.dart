@@ -7,6 +7,8 @@ import 'package:ecomerce/app/modules/detail/detail_controller.dart';
 import 'package:ecomerce/app/modules/detail/detail_module.dart';
 import 'package:ecomerce/app/modules/home/home_controller.dart';
 import 'package:ecomerce/app/modules/product_in_category/product_in_category_controller.dart';
+import 'package:ecomerce/app/modules/profile/profile_controller.dart';
+import 'package:ecomerce/app/modules/profile/profile_module.dart';
 import 'package:ecomerce/app/repositories/product_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,7 @@ class AppModule extends MainModule {
   [
         Bind((i) => BottomNavigationController()),
         Bind((i) => DetailController()),
-        // Bind((i) => AppModule()),
+        Bind((i) => ProfileController()),
         Bind((i) => HomeController()),
         Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
         Bind( (i)=> CartController()),
@@ -34,6 +36,7 @@ class AppModule extends MainModule {
         ModularRouter("/detail", module: DetailModule()),
         ModularRouter("/category/:name", module: ProductInCategoryModule()),
         ModularRouter("/cart" , module: CartModule()),
+        ModularRouter("/profile" , module: ProfileModule()),
       ];
 
   @override
