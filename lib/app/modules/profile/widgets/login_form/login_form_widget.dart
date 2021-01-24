@@ -1,5 +1,8 @@
+import 'package:ecomerce/app/modules/profile/profile_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 
 
 class LoginFormWidget extends StatelessWidget 
@@ -7,6 +10,7 @@ class LoginFormWidget extends StatelessWidget
   @override
   Widget build(BuildContext context) 
   {
+    final userStore = Provider.of<ProfileController>(context);
     return Center
     (
       child: Material
@@ -57,7 +61,11 @@ class LoginFormWidget extends StatelessWidget
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Text("Login"),
-                onPressed: () {},
+                onPressed: () 
+                {
+                  userStore.isLogin= true;
+                  Modular.to.pop();
+                },
               ),
             ],
           ),
