@@ -30,7 +30,7 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
         builder: (_) => userStore.isLoading == false
         ? Observer
         (
-          builder: (_) => userStore.isLogin
+          builder: (_) => userStore.login()
           ? SingleChildScrollView
           (
             child: Column

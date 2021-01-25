@@ -40,7 +40,8 @@ abstract class _ProfileControllerBase with Store
   {
     userList = repository.fetchUser().asObservable().whenComplete(() => 
     {
-      isLoading=false 
+      isLoading=false ,
+      // login() 
     });
   }
   @action
