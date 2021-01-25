@@ -39,6 +39,14 @@ class LoginFormWidget extends StatelessWidget
                   hintText: "Enter email",
                   border: OutlineInputBorder(),
                 ),
+                controller: TextEditingController
+                (
+                  text: userStore.userName
+                ),
+                onChanged: (value) 
+                {
+                  userStore.userName = value;
+                },
               ),
               const SizedBox(height: 10.0),
               TextField
@@ -49,13 +57,21 @@ class LoginFormWidget extends StatelessWidget
                   hintText: "Enter password",
                   border: OutlineInputBorder(),
                 ),
+                controller: TextEditingController
+                (
+                  text: userStore.passWord
+                ),
+                onChanged: (value) 
+                {
+                  userStore.passWord = value;
+                },
               ),
               const SizedBox(height: 10.0),
               RaisedButton
               (
                 color: HexColor("#ff0340"),
                 textColor: Colors.white,
-                elevation: 0,
+                elevation: 0, 
                 shape: RoundedRectangleBorder
                 (
                   borderRadius: BorderRadius.circular(20.0),
@@ -63,8 +79,9 @@ class LoginFormWidget extends StatelessWidget
                 child: Text("Login"),
                 onPressed: () 
                 {
-                  userStore.isLogin= true;
-                  Modular.to.pop();
+                  userStore.login() 
+                  ? Modular.to.pop()
+                  : print("error");
                 },
               ),
             ],

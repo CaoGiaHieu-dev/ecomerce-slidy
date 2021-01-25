@@ -24,11 +24,56 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  final _$userNameAtom = Atom(name: '_ProfileControllerBase.userName');
+
+  @override
+  String get userName {
+    _$userNameAtom.reportRead();
+    return super.userName;
+  }
+
+  @override
+  set userName(String value) {
+    _$userNameAtom.reportWrite(value, super.userName, () {
+      super.userName = value;
+    });
+  }
+
+  final _$passWordAtom = Atom(name: '_ProfileControllerBase.passWord');
+
+  @override
+  String get passWord {
+    _$passWordAtom.reportRead();
+    return super.passWord;
+  }
+
+  @override
+  set passWord(String value) {
+    _$passWordAtom.reportWrite(value, super.passWord, () {
+      super.passWord = value;
+    });
+  }
+
+  final _$userListAtom = Atom(name: '_ProfileControllerBase.userList');
+
+  @override
+  ObservableFuture<List<UserModel>> get userList {
+    _$userListAtom.reportRead();
+    return super.userList;
+  }
+
+  @override
+  set userList(ObservableFuture<List<UserModel>> value) {
+    _$userListAtom.reportWrite(value, super.userList, () {
+      super.userList = value;
+    });
+  }
+
   final _$_ProfileControllerBaseActionController =
       ActionController(name: '_ProfileControllerBase');
 
   @override
-  void login() {
+  bool login() {
     final _$actionInfo = _$_ProfileControllerBaseActionController.startAction(
         name: '_ProfileControllerBase.login');
     try {
@@ -41,7 +86,10 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
   @override
   String toString() {
     return '''
-isLogin: ${isLogin}
+isLogin: ${isLogin},
+userName: ${userName},
+passWord: ${passWord},
+userList: ${userList}
     ''';
   }
 }

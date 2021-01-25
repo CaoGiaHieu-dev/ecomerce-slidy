@@ -1,5 +1,6 @@
 import 'package:ecomerce/app/modules/cart/cart_controller.dart';
 import 'package:ecomerce/app/modules/profile/profile_controller.dart';
+import 'package:ecomerce/app/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,7 @@ class AppWidget extends StatelessWidget {
       providers: 
       [
         Provider<CartController>(create: (_) => CartController()),
-        Provider<ProfileController>(create: (_) => ProfileController()),
+        Provider<ProfileController>(create: (_) => ProfileController(Modular.get<UserRepository>())),
       ],
       child: MaterialApp(
         navigatorKey: Modular.navigatorKey,
