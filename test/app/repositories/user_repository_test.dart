@@ -6,6 +6,7 @@ import 'package:mockito/mockito.dart';
 class MockClient extends Mock implements Dio {}
 
 void main() {
+  // ignore: unused_local_variable
   UserRepository repository;
   // MockClient client;
 

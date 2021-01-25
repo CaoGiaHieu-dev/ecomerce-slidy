@@ -9,6 +9,14 @@ part of 'profile_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ProfileController on _ProfileControllerBase, Store {
+  Computed<ObservableList<UserModel>> _$getUserComputed;
+
+  @override
+  ObservableList<UserModel> get getUser => (_$getUserComputed ??=
+          Computed<ObservableList<UserModel>>(() => super.getUser,
+              name: '_ProfileControllerBase.getUser'))
+      .value;
+
   final _$isLoginAtom = Atom(name: '_ProfileControllerBase.isLogin');
 
   @override
@@ -21,6 +29,21 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
   set isLogin(bool value) {
     _$isLoginAtom.reportWrite(value, super.isLogin, () {
       super.isLogin = value;
+    });
+  }
+
+  final _$isLoadingAtom = Atom(name: '_ProfileControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
   }
 
@@ -69,6 +92,21 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
     });
   }
 
+  final _$userAtom = Atom(name: '_ProfileControllerBase.user');
+
+  @override
+  ObservableList<UserModel> get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(ObservableList<UserModel> value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
+  }
+
   final _$_ProfileControllerBaseActionController =
       ActionController(name: '_ProfileControllerBase');
 
@@ -84,12 +122,37 @@ mixin _$ProfileController on _ProfileControllerBase, Store {
   }
 
   @override
+  bool logout() {
+    final _$actionInfo = _$_ProfileControllerBaseActionController.startAction(
+        name: '_ProfileControllerBase.logout');
+    try {
+      return super.logout();
+    } finally {
+      _$_ProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void storageUser(String _username, String _password) {
+    final _$actionInfo = _$_ProfileControllerBaseActionController.startAction(
+        name: '_ProfileControllerBase.storageUser');
+    try {
+      return super.storageUser(_username, _password);
+    } finally {
+      _$_ProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 isLogin: ${isLogin},
+isLoading: ${isLoading},
 userName: ${userName},
 passWord: ${passWord},
-userList: ${userList}
+userList: ${userList},
+user: ${user},
+getUser: ${getUser}
     ''';
   }
 }

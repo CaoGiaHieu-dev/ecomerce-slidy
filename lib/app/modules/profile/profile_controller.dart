@@ -1,5 +1,6 @@
 
 import 'package:ecomerce/app/repositories/user_repository.dart';
+import 'package:ecomerce/app/shared/UserPreferences.dart';
 import 'package:ecomerce/app/shared/models/user_model.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
@@ -11,23 +12,36 @@ class ProfileController = _ProfileControllerBase with _$ProfileController;
 
 abstract class _ProfileControllerBase with Store 
 {
+  final UserRepository repository ;
+
+  
   @observable
   bool isLogin = false;
 
   @observable
-  String userName = "" ;
+  bool isLoading = true;
 
   @observable
-  String passWord = "";
+  String userName = UserPrefrences().getUserName ;
 
-  final UserRepository repository ;
+  @observable
+  String passWord = UserPrefrences().getPassword;
 
   @observable
   ObservableFuture<List<UserModel>> userList; 
 
+  @observable
+  ObservableList<UserModel> user =ObservableList<UserModel>() ; 
+
+  @computed
+  ObservableList<UserModel> get getUser => ObservableList.of(user);
+
   _ProfileControllerBase(this.repository)
   {
-    userList = repository .fetchUser().asObservable();
+    userList = repository.fetchUser().asObservable().whenComplete(() => 
+    {
+      isLoading=false 
+    });
   }
   @action
   bool login() 
@@ -42,9 +56,25 @@ abstract class _ProfileControllerBase with Store
         if(element.password==passWord )
         {
           isLogin = true;
+          storageUser(userName,passWord);
+          user.add(element);
         }
       }
     );
     return isLogin;
+  }
+
+  @action
+  bool logout()
+  {
+    user.isEmpty;
+    return isLogin= false;
+  }
+
+  @action
+  void storageUser(String _username ,String _password)
+  {
+    UserPrefrences().setUserName(_username);
+    UserPrefrences().setPassword(_password);
   }
 }

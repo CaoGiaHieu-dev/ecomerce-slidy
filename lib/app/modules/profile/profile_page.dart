@@ -18,46 +18,54 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
   //use 'controller' variable to access controller
-
   @override
   Widget build(BuildContext context)  
   {
     final userStore = Provider.of<ProfileController>(context);
+
     return Scaffold
     (
       body: Observer
       (
-        builder: (_) => userStore.isLogin
-        ? SingleChildScrollView
+        builder: (_) => userStore.isLoading == false
+        ? Observer
         (
-          child: Column
+          builder: (_) => userStore.isLogin
+          ? SingleChildScrollView
           (
-            children: <Widget>
-            [
-              ProfileHeaderWidget
-              (
-                avatar: NetworkImage("https://fakeimg.pl/250x100/"),
-                coverImage: NetworkImage("https://fakeimg.pl/250x100/"),
-                title: "Ramesh Mana",
-                subtitle: "Manager",
-                actions: <Widget>
-                [
-                  MaterialButton
-                  (
-                    color: Colors.white,
-                    shape: CircleBorder(),
-                    elevation: 0,
-                    child: Icon(Icons.edit),
-                    onPressed: () {},
-                  )
-                ],
-              ),
-              const SizedBox(height: 10.0),
-              UserInfoWidget(),
-            ],
-          ),
+            child: Column
+            (
+              children: <Widget>
+              [
+                ProfileHeaderWidget
+                (
+                  avatar: NetworkImage("https://fakeimg.pl/250x100/"),
+                  coverImage: NetworkImage("https://fakeimg.pl/250x100/"),
+                  title: "${userStore.getUser.first.name.firstname} ${userStore.getUser.first.name.lastname}",
+                  subtitle: "Gold Member",
+                  actions: <Widget>
+                  [
+                    MaterialButton
+                    (
+                      color: Colors.white,
+                      shape: CircleBorder(),
+                      elevation: 0,
+                      child: Icon(Icons.edit),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
+                const SizedBox(height: 10.0),
+                UserInfoWidget(),
+              ],
+            ),
+          )
+          : LoginWidget()
         )
-        : LoginWidget()
+        : Center
+        (
+          child: CircularProgressIndicator(),
+        )
       )
     ) ; 
   }

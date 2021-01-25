@@ -13,13 +13,13 @@ class ProfileModule extends ChildModule {
 
     //repository
     Bind( (i) => Dio(BaseOptions(baseUrl: "https://fakestoreapi.com"))),
-    Bind( (i)=> UserRepository(i.get<Dio>()) )
+    Bind( (i)=> UserRepository(i.get<Dio>()),lazy: true )
 
   ];
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, child: (_, args) => ProfilePage()),
+        ModularRouter(Modular.initialRoute, child: (_, args) => ProfilePage() ),
       ];
 
   static Inject get to => Inject<ProfileModule>.of();

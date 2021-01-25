@@ -79,7 +79,7 @@ class LoginFormWidget extends StatelessWidget
                 child: Text("Login"),
                 onPressed: () 
                 {
-                  userStore.login() 
+                  userStore.login()
                   ? Modular.to.pop()
                   : print("error");
                 },
