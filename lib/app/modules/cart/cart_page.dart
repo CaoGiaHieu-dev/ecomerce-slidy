@@ -1,10 +1,12 @@
 import 'package:ecomerce/app/modules/cart/widgets/checkout/checkout_widget.dart';
 import 'package:ecomerce/app/modules/components/items/items_widget.dart';
+import 'package:ecomerce/app/modules/components/layout/layout_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+
 import 'cart_controller.dart';
 
 class CartPage extends StatefulWidget {
@@ -24,30 +26,86 @@ class _CartPageState extends ModularState<CartPage, CartController> {
     final listCart = Provider.of<CartController>(context);
     return Scaffold
     (
-      bottomNavigationBar: CheckoutWidget(),
-      backgroundColor: HexColor("#f2eaec"),
-      appBar: AppBar
+      bottomNavigationBar: BottomAppBar
       (
-        title: Text(widget.title),
-        centerTitle: true,
+        color: Colors.transparent,
+        child: CheckoutWidget(),
       ),
-      body: SingleChildScrollView
+      backgroundColor: Colors.white,
+      body: LayoutWidget
       (
+        padding: 10.0,
+        titleheader: Container
+        (
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.2,
+          child: Center
+          (
+            child: Text
+            (
+              "Cart",
+              style: TextStyle
+              (
+                color: HexColor("#ff0340"),
+                fontSize: 30.0,
+                shadows: 
+                [
+                  BoxShadow
+                  (
+                    color: Colors.black,
+                    // offset: Offset(5.0, 5.0),
+                    blurRadius: 1.0
+                  )
+                ]
+              ),
+            ),
+          ),
+        ),
+        leading: MaterialButton
+        (
+          padding: const EdgeInsets.all(8.0),
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0)),
+          child: Icon(Icons.arrow_back_ios),
+          color: HexColor("#f2eaec"),
+          textColor: Colors.black,
+          minWidth: 0,
+          height: 40,
+          onPressed: () 
+          {
+            Modular.to.pop();
+          },
+        ),
+        // action: MaterialButton
+        // (
+        //   padding: const EdgeInsets.all(8.0),
+        //   shape: RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.circular(10.0)),
+        //   child: Icon(Icons.notifications_active_outlined),
+        //   color: HexColor("#f2eaec"),
+        //   textColor: Colors.black,
+        //   minWidth: 0,
+        //   height: 40,
+        //   onPressed: () => null,
+        // ),
         child: Observer
         (
           builder: (_)
           {
             if(listCart.listCart.isEmpty)
             {
-              return Center
-              (
-                child: Text
+              return Container
+              ( 
+                height: MediaQuery.of(context).size.height *0.75 -10,
+                child: Center
                 (
-                  "Your cart is empty"
+                  child: Text
+                  (
+                    "Your cart is empty"
+                  ),
                 ),
               );
             }
-
             int id ;
             var data = [];
             listCart.listCart.forEach
@@ -82,7 +140,7 @@ class _CartPageState extends ModularState<CartPage, CartController> {
                 );
               },
             ); 
-          },
+          }
         ),
       ),
     );
