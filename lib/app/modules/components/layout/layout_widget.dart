@@ -8,8 +8,9 @@ class LayoutWidget extends StatelessWidget
   final Widget leading ;
   final Widget action;
   final double padding;
+  final Color bgColor;
 
-  const LayoutWidget({Key key, this.titleheader, this.leading, this.action, this.child, this.padding}) : super(key: key);
+  const LayoutWidget({Key key, this.titleheader, this.leading, this.action, this.child, this.padding, this.bgColor}) : super(key: key);
   @override
   Widget build(BuildContext context) 
   {
@@ -56,7 +57,7 @@ class LayoutWidget extends StatelessWidget
                       topRight: Radius.circular(20.0),
                       
                     ),
-                    color: HexColor("#f2eaec")
+                    color: bgColor == null ? HexColor("#f2eaec") : bgColor
                   ),
                   child: this.child
                 )
