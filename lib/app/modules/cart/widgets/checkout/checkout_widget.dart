@@ -103,16 +103,19 @@ class CheckoutWidget extends StatelessWidget
               (
                 "Check Out"
               ),
-              color: HexColor("#ff0340"),
+              color: listCart.cart.isNotEmpty ? HexColor("#ff0340") : Colors.grey,
               textColor: Colors.black,
               minWidth: 0,
               height: 50,
               onPressed: ()
               {
-                Modular.to.pushNamed
+                listCart.cart.isNotEmpty
+                ? Modular.to.pushNamed
                 (
                   "/checkout"
-                );
+                )
+                // ignore: unnecessary_statements
+                : null;
               }
             ),
           ],

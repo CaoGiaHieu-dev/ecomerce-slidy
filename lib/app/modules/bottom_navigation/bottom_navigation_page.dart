@@ -19,12 +19,6 @@ class _BottomNavigationPageState
     extends ModularState<BottomNavigationPage, BottomNavigationController> {
   //use 'controller' variable to access controller
   final routerListController = RouterOutletListController();
-
-  @override 
-  void initState()
-  {
-    super.initState();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold

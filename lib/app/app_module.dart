@@ -14,6 +14,7 @@ import 'package:ecomerce/app/modules/product_in_category/product_in_category_con
 import 'package:ecomerce/app/modules/product_in_category/product_in_category_module.dart';
 import 'package:ecomerce/app/modules/profile/profile_controller.dart';
 import 'package:ecomerce/app/modules/profile/profile_module.dart';
+import 'package:ecomerce/app/repositories/cart_repository.dart';
 import 'package:ecomerce/app/repositories/product_repository.dart';
 import 'package:ecomerce/app/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class AppModule extends MainModule {
         Bind((i) => HomeController()),
         Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
         Bind( (i)=> CartController()),
-        Bind( (i)=> CheckOutController()),
+        Bind( (i)=> CheckOutController(i.get<CartRepository>())),
   ];
 
   @override
