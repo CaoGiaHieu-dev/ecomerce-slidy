@@ -30,37 +30,45 @@ class _ProfilePageState extends ModularState<ProfilePage, ProfileController> {
         builder: (_) => userStore.isLoading == false
         ? Observer
         (
-          builder: (_) => userStore.login()
-          ? SingleChildScrollView
-          (
-            child: Column
-            (
-              children: <Widget>
-              [
-                ProfileHeaderWidget
+          builder: (_) 
+          {
+            if(( userStore.isLogin || userStore.login() ))
+            {
+              return SingleChildScrollView
+              (
+                child: Column
                 (
-                  avatar: NetworkImage("https://fakeimg.pl/250x100/"),
-                  coverImage: NetworkImage("https://fakeimg.pl/250x100/"),
-                  title: "${userStore.getUser.first.name.firstname} ${userStore.getUser.first.name.lastname}",
-                  subtitle: "Gold Member",
-                  actions: <Widget>
+                  children: <Widget>
                   [
-                    MaterialButton
+                    ProfileHeaderWidget
                     (
-                      color: Colors.white,
-                      shape: CircleBorder(),
-                      elevation: 0,
-                      child: Icon(Icons.edit),
-                      onPressed: () {},
-                    )
+                      avatar: NetworkImage("https://fakeimg.pl/250x100/"),
+                      coverImage: NetworkImage("https://fakeimg.pl/250x100/"),
+                      title: "${userStore.getUser.first.name.firstname} ${userStore.getUser.first.name.lastname}",
+                      subtitle: "Gold Member",
+                      actions: <Widget>
+                      [
+                        MaterialButton
+                        (
+                          color: Colors.white,
+                          shape: CircleBorder(),
+                          elevation: 0,
+                          child: Icon(Icons.edit),
+                          onPressed: () {},
+                        )
+                      ],
+                    ),
+                    const SizedBox(height: 10.0),
+                    UserInfoWidget(),
                   ],
                 ),
-                const SizedBox(height: 10.0),
-                UserInfoWidget(),
-              ],
-            ),
-          )
-          : LoginWidget()
+              );
+            }
+            else
+            {
+              return LoginWidget();
+            }
+          }
         )
         : Center
         (

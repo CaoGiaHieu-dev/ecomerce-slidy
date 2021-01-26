@@ -68,8 +68,10 @@ abstract class _ProfileControllerBase with Store
   @action
   bool logout()
   {
-    user.isEmpty;
-    return isLogin= false;
+    user.clear();
+    storageUser("","");
+    login();
+    return isLogin = false;
   }
 
   @action
@@ -77,5 +79,7 @@ abstract class _ProfileControllerBase with Store
   {
     UserPrefrences().setUserName(_username);
     UserPrefrences().setPassword(_password);
+    userName = UserPrefrences().getUserName ;
+    passWord = UserPrefrences().getPassword;
   }
 }
