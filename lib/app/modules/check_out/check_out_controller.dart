@@ -14,6 +14,9 @@ abstract class _CheckOutControllerBase with Store {
   @observable
   String status = "";
 
+  // @observable
+  String phoneNumber;
+
   _CheckOutControllerBase(this.repository);
 
   @action

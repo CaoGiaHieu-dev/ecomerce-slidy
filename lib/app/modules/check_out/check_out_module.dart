@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:ecomerce/app/modules/check_out/check_out_page.dart';
+import 'package:ecomerce/app/modules/components/google_map_picker/google_map_picker_controller.dart';
 import 'package:ecomerce/app/repositories/cart_repository.dart';
 import 'package:ecomerce/app/repositories/user_repository.dart';
 import 'package:ecomerce/constaints/constaints.dart';
@@ -11,7 +12,9 @@ class CheckOutModule extends ChildModule {
   [
     Bind( (i) => Dio(BaseOptions(baseUrl: base_url))),
     Bind( (i)=> CartRepository(i.get<Dio>()) ),
-    Bind( (i)=> UserRepository(i.get<Dio>()) )
+    Bind( (i)=> UserRepository(i.get<Dio>()) ),
+
+    Bind( (i) => GoogleMapPickerController())
   ];
 
   @override

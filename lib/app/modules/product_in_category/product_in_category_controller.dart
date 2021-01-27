@@ -1,7 +1,7 @@
 import 'package:ecomerce/app/repositories/product_repository.dart';
 import 'package:ecomerce/app/shared/models/product_model.dart';
-import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mobx/mobx.dart';
 
 part 'product_in_category_controller.g.dart';
 

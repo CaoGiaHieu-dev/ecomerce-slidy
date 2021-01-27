@@ -1,6 +1,9 @@
 
 import 'package:ecomerce/app/modules/cart/cart_controller.dart';
-import 'package:ecomerce/app/modules/check_out/payment_type/payment_type_widget.dart';
+import 'package:ecomerce/app/modules/check_out/widgets/edit_contact/edit_contact_widget.dart';
+import 'package:ecomerce/app/modules/check_out/widgets/payment_type/payment_type_widget.dart';
+import 'package:ecomerce/app/modules/components/google_map_picker/google_map_picker_controller.dart';
+import 'package:ecomerce/app/modules/components/google_map_picker/google_map_picker_widget.dart';
 import 'package:ecomerce/app/modules/components/layout/layout_widget.dart';
 import 'package:ecomerce/app/modules/profile/profile_controller.dart';
 import 'package:ecomerce/app/modules/profile/widgets/login/login_widget.dart';
@@ -32,6 +35,7 @@ class _CheckOutPageState
   {
     final listCart = Provider.of<CartController>(context);
     final userStore =Provider.of<ProfileController>(context);
+    final googleMapPicker = Provider.of<GoogleMapPickerController>(context);
     return Scaffold
     (
       backgroundColor: Colors.white,
@@ -127,77 +131,56 @@ class _CheckOutPageState
                           ],
                         ),
                         SizedBox(height: 20.0),
-                        Card
+                        EditContactWidget
                         (
-                          margin: const EdgeInsets.all(0),
-                          color:  HexColor("#f2eaec"),
-                          elevation: 0,
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder
+                          leading: Icon
                           (
-                            borderRadius: BorderRadius.circular(20.0),
+                            FontAwesomeIcons.searchLocation,
+                            color: Colors.red,
                           ),
-                          child: Container
+                          title: Text
                           (
-                            height: MediaQuery.of(context).size.height *0.2 -100,
-                            child : ListTile
-                            (
-                            leading: Icon
-                            (
-                              FontAwesomeIcons.searchLocation,
-                              color: Colors.red,
-                            ),
-                            title: Text
-                            (
-                              "${userStore.getUser.first.address.street} ${userStore.getUser.first.address.city}",
-                              softWrap: true,
-                              maxLines: 3,
-                            ),
-                            trailing: Icon(Icons.arrow_forward_ios),
+                            googleMapPicker.selectedPlace != null 
+                            ? googleMapPicker.selectedPlace.formattedAddress
+                            : "${userStore.getUser.first.address.street} ${userStore.getUser.first.address.city}",
+                            softWrap: true,
+                            maxLines: 3,
                           ),
-                          ),
+                          trailing: Icon(Icons.arrow_forward_ios),
+                          ontap: () => Modular.to.push
+                          (
+                            MaterialPageRoute(builder: (context)=> GoogleMapPickerWidget())
+                          )
                         ),
                         SizedBox(height: 20.0),
-                        Card
+                        EditContactWidget
                         (
-                          margin: const EdgeInsets.all(0),
-                          color:  HexColor("#f2eaec"),
-                          elevation: 0,
-                          clipBehavior: Clip.antiAlias,
-                          shape: RoundedRectangleBorder
+                          leading:Icon
                           (
-                            borderRadius: BorderRadius.circular(20.0),
+                            FontAwesomeIcons.phone,
+                            color: Colors.red,
                           ),
-                          child: Container
+                          title: TextField
                           (
-                            height: MediaQuery.of(context).size.height *0.2 -100,
-                            child : ListTile
+                            keyboardType: TextInputType.number,
+                            decoration: InputDecoration
                             (
-                              leading: Icon
-                              (
-                                FontAwesomeIcons.phone,
-                                color: Colors.red,
-                              ),
-                              title: TextField
-                              (
-                                decoration: InputDecoration
-                                (
-                                  hintText: "Enter phome number",
-                                  // border: OutlineInputBorder(),
-                                ),
-                                controller: TextEditingController
-                                (
-                                  text: userStore.getUser.first.phone
-                                ),
-                                onChanged: (value) 
-                                {
-
-                                },
-                              ),
-                              // trailing: Icon(Icons.arrow_forward_ios),
+                              hintText: "Enter phome number",
+                              // border: OutlineInputBorder(),
                             ),
+                            controller: TextEditingController
+                            (
+                              text: (controller.phoneNumber == null || controller.phoneNumber =="") 
+                              ? userStore.getUser.first.phone
+                              : controller.phoneNumber,
+                            ),
+                            onSubmitted: (value) {
+                              controller.phoneNumber = value;
+                            },
                           ),
+                          // trailing: Icon(Icons.arrow_forward_ios),
                         ),
+                        
                         SizedBox(height: 20.0),
                         Observer
                         (

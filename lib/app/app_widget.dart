@@ -1,5 +1,6 @@
 import 'package:ecomerce/app/modules/bottom_navigation/bottom_navigation_controller.dart';
 import 'package:ecomerce/app/modules/cart/cart_controller.dart';
+import 'package:ecomerce/app/modules/components/google_map_picker/google_map_picker_controller.dart';
 import 'package:ecomerce/app/modules/profile/profile_controller.dart';
 import 'package:ecomerce/app/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class AppWidget extends StatelessWidget {
       providers: 
       [
         Provider<CartController>(create: (_) => CartController()),
+        Provider<GoogleMapPickerController>(create: (_) => GoogleMapPickerController()),
         Provider<BottomNavigationController>(create: (_) => BottomNavigationController()),
         Provider<ProfileController>(create: (_) => ProfileController(Modular.get<UserRepository>())),
       ],
