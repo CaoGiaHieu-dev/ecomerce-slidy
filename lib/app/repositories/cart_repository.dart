@@ -1,9 +1,7 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:ecomerce/app/shared/models/cart_model.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:http/http.dart' as http;
 
 // part 'cart_repository.g.dart';
 
@@ -26,36 +24,53 @@ class CartRepository extends Disposable
     }
   }
 
-  Future<CartModel> postCart(int userId ,String date , List<Products> productlist , int iV) async
+  Future postCart(CartModel data) async
   {
-    final http.Response response = await http.post
-    (
-      'https://fakestoreapi.com/carts',
-      headers: <String, String>
-      {
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-      body: jsonEncode
+    try
+    {
+      final response = await client.post
       (
-        <dynamic,dynamic>
-        {
-          'date' : date,
-          'userId' : userId,
-          'productlist' : productlist,
-          'iV' : iV,
-        } 
-      )
-    );
-
-    if (response.statusCode == 200) 
+        "/carts",
+        data: data,
+        options: Options
+        (
+          contentType: Headers.formUrlEncodedContentType,
+        ),
+      );
+      return response.statusMessage;
+    } on DioError catch(e)
     {
-      // return response;
-      return CartModel.fromJson(jsonDecode(response.body));
-    } 
-    else 
-    {
-      throw Exception('Failed to post cart.');
+      // throw (e.message);
+      return e.message;
     }
+//     final http.Response response = await http.post
+//     (
+//       'https://fakestoreapi.com/carts',
+//       headers: <String, String>
+//       {
+//         'Content-Type': 'application/json; charset=UTF-8',
+//       },
+//       body: jsonEncode
+//       (
+//         <dynamic,dynamic>
+//         {
+//           'date' : date,
+//           'userId' : userId,
+//           'productlist' : productlist,
+//           'iV' : iV,
+//         } 
+//       )
+//     );
+// 
+//     if (response.statusCode == 200) 
+//     {
+//       // return response;
+//       return CartModel.fromJson(jsonDecode(response.body));
+//     } 
+//     else 
+//     {
+//       throw Exception('Failed to post cart.');
+//     }
   }
   
 

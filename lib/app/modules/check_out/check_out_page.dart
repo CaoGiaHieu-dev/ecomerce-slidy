@@ -11,6 +11,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'check_out_controller.dart';
 
@@ -320,6 +321,7 @@ class _CheckOutPageState
                                   }
                                 );
                                 var now = new DateTime.now();
+                                
                                 controller.payment
                                 (
                                   CartModel
@@ -329,8 +331,17 @@ class _CheckOutPageState
                                     userId: userStore.getUser.first.id,
                                     products: productList
                                   ),
-                                );
-                                Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst);
+                                ).whenComplete(() async 
+                                {
+                                  await _onAlertButtonPressed(context,controller.status);
+                                  if(controller.status == "OK")
+                                  {
+                                    listCart.cart.clear();
+                                    listCart.cartShow.clear();
+                                  }
+                                });
+                                
+                                // Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst);
                               }
                             ),
                           ]
@@ -357,4 +368,39 @@ class _CheckOutPageState
       ) 
     );
   }
+}
+
+
+//alter
+_onAlertButtonPressed(context,String status) 
+{
+  Alert
+  (
+    context: context,
+    type: status =="OK" ?AlertType.success :  AlertType.error,
+    title: "$status",
+    desc:  status =="OK" ?"Susscess" : "Try again",
+    buttons: 
+    [
+      DialogButton
+      (
+        child: Text
+        (
+          "OK",
+          style: TextStyle
+          (
+            color: Colors.white, 
+            fontSize: 20
+          ),
+        ),
+        onPressed: ()
+        {
+          status =="OK" 
+          ? Navigator.popUntil(context, (Route<dynamic> route) => route.isFirst)
+          : Modular.to.pop();
+        },
+        width: 120,
+      )
+    ],
+  ).show();
 }

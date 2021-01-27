@@ -11,12 +11,18 @@ class CheckOutController = _CheckOutControllerBase with _$CheckOutController;
 abstract class _CheckOutControllerBase with Store {
   final CartRepository repository ;
 
+  @observable
+  String status = "";
+
   _CheckOutControllerBase(this.repository);
 
   @action
-  void payment(CartModel data)
+  Future<void> payment(CartModel data) async
   {
-    repository.postCart(data.userId, data.date, data.products, data.iV);
+    // repository.postCart(data.userId, data.date, data.products, data.iV);
+    await repository.postCart(data).then((value) => 
+    {
+      status = value
+    });
   }
-
 }

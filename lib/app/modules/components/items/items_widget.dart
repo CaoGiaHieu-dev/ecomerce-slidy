@@ -125,7 +125,8 @@ class ItemsWidget extends StatelessWidget
                         Text
                         (
                           "${titleLength(this.title, textLength==null ? 50 : textLength)}",
-                          maxLines: this.isCart ? 1 :3,
+                          maxLines: this.isCart ? 2 :3,
+                          softWrap: true,
                           style: TextStyle
                           (
                             fontSize: 15.0, 

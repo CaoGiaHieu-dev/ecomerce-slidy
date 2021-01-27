@@ -136,7 +136,7 @@ class _CartPageState extends ModularState<CartPage, CartController> {
                   arguments: data[index],
                   isCart: true,
                   data : data[index],
-                  textLength: 15,
+                  textLength: 10,
                 );
               },
             ); 
