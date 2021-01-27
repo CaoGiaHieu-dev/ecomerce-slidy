@@ -174,7 +174,8 @@ class _CheckOutPageState
                               ? userStore.getUser.first.phone
                               : controller.phoneNumber,
                             ),
-                            onSubmitted: (value) {
+                            onSubmitted: (value) 
+                            {
                               controller.phoneNumber = value;
                             },
                           ),

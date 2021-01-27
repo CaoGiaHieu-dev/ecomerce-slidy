@@ -12,8 +12,7 @@ class CartModel {
     userId = json['userId'];
     date = json['date'];
     if (json['products'] != null) {
-      // ignore: deprecated_member_use
-      products = new List<Products>();
+      products = <Products>[];
       json['products'].forEach((v) {
         products.add(new Products.fromJson(v));
       });

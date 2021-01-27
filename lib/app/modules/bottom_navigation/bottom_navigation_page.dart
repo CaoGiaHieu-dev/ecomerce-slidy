@@ -1,3 +1,4 @@
+import 'package:ecomerce/app/modules/history/history_module.dart';
 import 'package:ecomerce/app/modules/home/home_module.dart';
 import 'package:ecomerce/app/modules/profile/profile_module.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class _BottomNavigationPageState
           modules: <ChildModule>
           [
             HomeModule(),
+            HistoryModule(),
             ProfileModule(),
           ],
         ),
@@ -47,6 +49,11 @@ class _BottomNavigationPageState
               (
                 icon: Icon(Icons.home),
                 label: "Home",
+              ),
+              BottomNavigationBarItem
+              (
+                icon: Icon(Icons.history),
+                label: "History",
               ),
               BottomNavigationBarItem
               (

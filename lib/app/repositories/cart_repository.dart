@@ -9,14 +9,26 @@ import 'package:flutter_modular/flutter_modular.dart';
 class CartRepository extends Disposable 
 {
   final Dio client;
-
+  
   CartRepository(this.client);
 
-  Future fetchCart() async 
+  Future<List<CartModel>> fetchCart() async 
   {
     try
     {
-      final response =  await client.get('/products');
+      final response =  await client.get('/carts');
+      return (response.data as List).map((e) => CartModel.fromJson(e)).toList();
+    } on DioError catch(e)
+    {
+      throw (e.message);
+    }
+  }
+
+  Future<List<CartModel>> fetchUserCart(int id) async 
+  {
+    try
+    {
+      final response =  await client.get('/carts/user/$id');
       return (response.data as List).map((e) => CartModel.fromJson(e)).toList();
     } on DioError catch(e)
     {
@@ -43,34 +55,6 @@ class CartRepository extends Disposable
       // throw (e.message);
       return e.message;
     }
-//     final http.Response response = await http.post
-//     (
-//       'https://fakestoreapi.com/carts',
-//       headers: <String, String>
-//       {
-//         'Content-Type': 'application/json; charset=UTF-8',
-//       },
-//       body: jsonEncode
-//       (
-//         <dynamic,dynamic>
-//         {
-//           'date' : date,
-//           'userId' : userId,
-//           'productlist' : productlist,
-//           'iV' : iV,
-//         } 
-//       )
-//     );
-// 
-//     if (response.statusCode == 200) 
-//     {
-//       // return response;
-//       return CartModel.fromJson(jsonDecode(response.body));
-//     } 
-//     else 
-//     {
-//       throw Exception('Failed to post cart.');
-//     }
   }
   
 

@@ -8,6 +8,8 @@ import 'package:ecomerce/app/modules/check_out/check_out_controller.dart';
 import 'package:ecomerce/app/modules/check_out/check_out_module.dart';
 import 'package:ecomerce/app/modules/detail/detail_controller.dart';
 import 'package:ecomerce/app/modules/detail/detail_module.dart';
+import 'package:ecomerce/app/modules/history/history_controller.dart';
+import 'package:ecomerce/app/modules/history/history_module.dart';
 import 'package:ecomerce/app/modules/home/home_controller.dart';
 import 'package:ecomerce/app/modules/home/home_module.dart';
 import 'package:ecomerce/app/modules/product_in_category/product_in_category_controller.dart';
@@ -25,13 +27,14 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds =>  
   [
-        Bind((i) => BottomNavigationController()),
-        Bind((i) => DetailController()),
-        Bind((i) => ProfileController(i.get<UserRepository>())),
-        Bind((i) => HomeController()),
-        Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
-        Bind( (i)=> CartController()),
-        Bind( (i)=> CheckOutController(i.get<CartRepository>())),
+    Bind((i) => HistoryController(i.get<CartRepository>())),
+    Bind((i) => BottomNavigationController()),
+    Bind((i) => DetailController()),
+    Bind((i) => ProfileController(i.get<UserRepository>())),
+    Bind((i) => HomeController()),
+    Bind( (i) =>ProductInCategoryController(i.get<ProductRepository>(),Modular.args.data )),
+    Bind( (i)=> CartController()),
+    Bind( (i)=> CheckOutController(i.get<CartRepository>())),
   ];
 
   @override
@@ -43,6 +46,7 @@ class AppModule extends MainModule {
         ModularRouter("/cart" , module: CartModule()),
         ModularRouter("/profile" , module: ProfileModule()),
         ModularRouter("/checkout" , module: CheckOutModule()),
+        ModularRouter("/history/:id" , module: HistoryModule()),
       ];
 
   @override
