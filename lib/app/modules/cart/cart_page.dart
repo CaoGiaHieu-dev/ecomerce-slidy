@@ -34,6 +34,7 @@ class _CartPageState extends ModularState<CartPage, CartController> {
       backgroundColor: Colors.white,
       body: LayoutWidget
       (
+        bgColor: Colors.white,
         padding: 10.0,
         titleheader: Container
         (

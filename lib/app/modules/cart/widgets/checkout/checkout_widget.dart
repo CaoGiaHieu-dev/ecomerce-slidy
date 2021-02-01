@@ -86,37 +86,41 @@ class CheckoutWidget extends StatelessWidget
               ],
             ),
             Spacer(),
-            MaterialButton
+            Observer
             (
-              padding: const EdgeInsets.only
+
+              builder:(_)=> MaterialButton
               (
-                top :8.0,
-                bottom:8.0,
-                left: 30.0,
-                right: 30.0
-              ),
-              shape: RoundedRectangleBorder
-              (
-                borderRadius: BorderRadius.circular(10.0)
-              ),
-              child: Text
-              (
-                "Check Out"
-              ),
-              color: listCart.cart.isNotEmpty ? HexColor("#ff0340") : Colors.grey,
-              textColor: Colors.black,
-              minWidth: 0,
-              height: 50,
-              onPressed: ()
-              {
-                listCart.cart.isNotEmpty
-                ? Modular.to.pushNamed
+                padding: const EdgeInsets.only
                 (
-                  "/checkout"
-                )
-                // ignore: unnecessary_statements
-                : null;
-              }
+                  top :8.0,
+                  bottom:8.0,
+                  left: 30.0,
+                  right: 30.0
+                ),
+                shape: RoundedRectangleBorder
+                (
+                  borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Text
+                (
+                  "Check Out"
+                ),
+                color: listCart.cart.isNotEmpty ? HexColor("#ff0340") : Colors.grey,
+                textColor: Colors.black,
+                minWidth: 0,
+                height: 50,
+                onPressed: ()
+                {
+                  listCart.cart.isNotEmpty
+                  ? Modular.to.pushNamed
+                  (
+                    "/checkout"
+                  )
+                  // ignore: unnecessary_statements
+                  : null;
+                }
+              ),
             ),
           ],
         ),
