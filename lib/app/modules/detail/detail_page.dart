@@ -7,6 +7,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+
 import 'detail_controller.dart';
 
 class DetailPage extends StatefulWidget {
@@ -168,20 +169,17 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                 Spacer(),
                 SizedBox(height: 10.0),
                 //title
-                Hero(
-                  tag: "title${this.widget.data.id}",
-                  child: Material
+                Material
+                (
+                  type: MaterialType.transparency,
+                  child: Text
                   (
-                    type: MaterialType.transparency,
-                    child: Text
+                    this.widget.data.title ,
+                    style: TextStyle
                     (
-                      this.widget.data.title ,
-                      style: TextStyle
-                      (
-                        color: HexColor("#45969b"),
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold
-                      ),
+                      color: HexColor("#45969b"),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold
                     ),
                   ),
                 ),
@@ -192,22 +190,18 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                 ),
 
                 //price
-                Hero
+                Material
                 (
-                  tag: "price${this.widget.data.id}",
-                  child: Material
+                  type: MaterialType.transparency,
+                  child: Text
                   (
-                    type: MaterialType.transparency,
-                    child: Text
+                    "\$${this.widget.data.price}" ,
+                    textAlign: TextAlign.start, 
+                    style: TextStyle
                     (
-                      "\$${this.widget.data.price}" ,
-                      textAlign: TextAlign.start, 
-                      style: TextStyle
-                      (
-                        fontSize: 30.0,
-                        fontWeight: FontWeight.bold,
-                        color: HexColor("#ff0340")
-                      ),
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: HexColor("#ff0340")
                     ),
                   ),
                 ),
@@ -247,7 +241,7 @@ class _DetailPageState extends ModularState<DetailPage, DetailController> {
                           horizontal: 20,
                           vertical: 10
                         ),
-                        child: RaisedButton
+                        child: MaterialButton
                         (
                           shape: RoundedRectangleBorder
                           (

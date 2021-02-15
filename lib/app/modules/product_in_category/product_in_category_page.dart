@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:hexcolor/hexcolor.dart';
+
 import 'product_in_category_controller.dart';
 
 class ProductInCategoryPage extends StatefulWidget {
@@ -169,6 +170,7 @@ class _ProductInCategoryPageState
                                   price: data[index].price,
                                   title: data[index].title,
                                   arguments: data[index],
+                                  data: data[index],
                                   isCart: false,
                                 );
                               },

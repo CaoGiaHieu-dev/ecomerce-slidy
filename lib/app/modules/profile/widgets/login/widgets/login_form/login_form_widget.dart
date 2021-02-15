@@ -67,7 +67,7 @@ class LoginFormWidget extends StatelessWidget
                 },
               ),
               const SizedBox(height: 10.0),
-              RaisedButton
+              MaterialButton
               (
                 color: HexColor("#ff0340"),
                 textColor: Colors.white,

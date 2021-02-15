@@ -40,9 +40,9 @@ class AppModule extends MainModule {
   @override
   List<ModularRouter> get routers => [
         ModularRouter(Modular.initialRoute, module: BottomNavigationModule()),
-        ModularRouter("/home" , module: HomeModule()),
+        ModularRouter("/home" , module: HomeModule(),transition: TransitionType.rightToLeft),
         ModularRouter("/detail", module: DetailModule()),
-        ModularRouter("/category/:name", module: ProductInCategoryModule()),
+        ModularRouter("/category/:name", module: ProductInCategoryModule(),transition: TransitionType.rightToLeft),
         ModularRouter("/cart" , module: CartModule()),
         ModularRouter("/profile" , module: ProfileModule()),
         ModularRouter("/checkout" , module: CheckOutModule()),

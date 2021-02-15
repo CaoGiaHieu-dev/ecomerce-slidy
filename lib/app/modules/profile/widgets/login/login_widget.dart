@@ -154,6 +154,8 @@ class LoginWidget extends StatelessWidget
                   ],
                 ),
                 Spacer(),
+                //its was old
+                // ignore: deprecated_member_use
                 OutlineButton.icon
                 (
                   borderSide: BorderSide
@@ -178,11 +180,10 @@ class LoginWidget extends StatelessWidget
                     "Continue with Google",
                     style: TextStyle
                     (
-                      fontSize: 15
+                      fontSize: 15,
+                      color: Colors.white
                     ),
                   ),
-                  color: HexColor("#ff0340"),
-                  textColor: Colors.white,
                   
                   onPressed: () => null
                 ),

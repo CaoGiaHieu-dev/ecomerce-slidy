@@ -55,25 +55,29 @@ class ItemsWidget extends StatelessWidget
           [
             Expanded
             (
-              child: Container
+              child: Hero
               (
-                decoration: BoxDecoration
+                tag: "image${this.data.id}",
+                child: Container
                 (
-                  image: DecorationImage
+                  decoration: BoxDecoration
                   (
-                    image: NetworkImage(this.image), 
-                    fit: BoxFit.cover
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  boxShadow: 
-                  [
-                    BoxShadow
+                    image: DecorationImage
                     (
-                      color: Colors.grey,
-                      offset: Offset(5.0, 5.0),
-                      blurRadius: 10.0
-                    )
-                  ]
+                      image: NetworkImage(this.image), 
+                      fit: BoxFit.cover
+                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    boxShadow: 
+                    [
+                      BoxShadow
+                      (
+                        color: Colors.grey,
+                        offset: Offset(5.0, 5.0),
+                        blurRadius: 10.0
+                      )
+                    ]
+                  ),
                 ),
               )
             ),
