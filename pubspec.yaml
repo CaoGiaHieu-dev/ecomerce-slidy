@@ -48,7 +48,8 @@ dependencies:
   # flutter_custom_dialog: ^1.0.20
   # svg_cached_network_image: ^1.0.0+1
   shared_preferences: ^0.5.12+4
-  flutter_svg: ^0.19.2+1
+  # flutter_svg: ^0.19.2+1
+  flutter_svg: ^0.20.0-nullsafety.3
   flutter:
     sdk: flutter
 
